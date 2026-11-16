@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chiskey estudio</title>
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/dxsip0hvb/image/upload/v1763985477/Recurso_101_htujm4.png">
+
+    <!-- fuentes: la misma URL que el @import de styles.css, pedida desde aquí para que
+         no espere a que baje styles.css (el navegador la descarga una sola vez) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;800&family=Urbanist:wght@400;600&display=swap">
+
+    <!-- la tarta del hero: se pide antes que nada (WebP; el PNG de /tarta/ es solo respaldo) -->
+    <link rel="preload" as="image" type="image/webp" fetchpriority="high"
+          imagesrcset="/img/inicio-tarta-600.webp 600w, /img/inicio-tarta-900.webp 900w, /img/inicio-tarta-1200.webp 1200w"
+          imagesizes="(max-width: 768px) 56vw, min(21vw, 463px)">
+
+    <link rel="stylesheet" href="/styles.css">
+    <!-- estilos de la home (scope body.page-index); el fondo crema va aquí, en el <head> -->
+    <link rel="stylesheet" href="/inicio.css">
+    <!-- globito "¿Antojo urgente?" (modo solo globo, siempre visible, sin tarta flotante) -->
+    <link rel="stylesheet" href="/tarta/tarta.css">
+    <!-- pie con contacto, igual que en /servicios/ -->
+    <link rel="stylesheet" href="/pie/pie.css">
+
+    <!-- PUERTA DE CARGA: con JS, el contenido de <main> espera a Outfit 800 y a la tarta
+         (tope 1,2 s) y entonces se añade UNA vez "inicio-listo" en <html>.
+         Va después de los CSS: así ya conoce el @font-face de Google.
+         Sin JS no hay clase "js" y todo se ve directamente, sin animación. -->
+    <script>
+    (function (d) {
+        var h = d.documentElement, hecho = false;
+        h.classList.add('js');
+        function listo() {
+            if (hecho) return;
+            hecho = true;
+            h.classList.add('inicio-listo');
+            d.dispatchEvent(new Event('inicio:listo'));
+        }
+        setTimeout(listo, 1200);
+        var fuente = (d.fonts && d.fonts.load) ? Promise.all([d.fonts.load('800 1em Outfit'), d.fonts.load('400 1em Outfit')]) : Promise.resolve();
+        var tarta = new Promise(function (ok) {
+            d.addEventListener('DOMContentLoaded', function () {
+                var img = d.querySelector('.inicio-tarta-img');
+                if (!img) { ok(); return; }
+                // la tarta solo arranca su entrada cuando está decodificada: nunca rebota a medias
+                var marcar = function () { var e = img.closest('.inicio-tarta-entrada'); if (e) e.classList.add('is-lista'); ok(); };
+                if (img.decode) img.decode().then(marcar, function () { img.addEventListener('load', marcar, { once: true }); ok(); });
+                else if (img.complete) marcar(); else img.addEventListener('load', marcar, { once: true });
+            });
+        });
+        Promise.all([fuente, tarta]).then(listo, listo);
+    })(document);
+    </script>
+<!-- La comanda de Reservas (botón Reservas y "Escribirnos"): /reserva/ -->
+<link rel="stylesheet" href="/reserva/reserva.css">
+</head>
+<body class="page-index">
+
+    <header class="navbar">
+        <div class="logo">
+            <a href="/">
+                <img src="https://res.cloudinary.com/dxsip0hvb/image/upload/v1763595831/LOGO_BLANCO_CHISKEY_uvl5an.png" alt="Logo de la Empresa">
+            </a>
+        </div>
+        <nav class="menu">
+            <a href="#" id="menu-toggle" data-content="menu">Índice</a>
+        </nav>
+        <a href="#" class="reservas-btn" data-content="reservas">Reservas</a>
+    </header>
+
+    <main class="inicio-main">
+        <h1 class="sr-only">chiskey estudio</h1>
+
+        <!-- ===================== LAS DOS CINTAS (decorativas) =====================
+             cada línea: dos grupos idénticos; cada grupo repite la unidad (4 y 3 veces)
+             para ser más ancho que el contenedor incluso a 2560 px -->
+        <div class="inicio-cintas" aria-hidden="true">
+            <div class="inicio-cinta inicio-cinta--a inicio-cinta--derecha">
+                <div class="inicio-cinta-grupo"><span class="inicio-cinta-unidad">chiskey</span><span class="inicio-cinta-unidad">chiskey</span><span class="inicio-cinta-unidad">chiskey</span><span class="inicio-cinta-unidad">chiskey</span></div>
+                <div class="inicio-cinta-grupo"><span class="inicio-cinta-unidad">chiskey</span><span class="inicio-cinta-unidad">chiskey</span><span class="inicio-cinta-unidad">chiskey</span><span class="inicio-cinta-unidad">chiskey</span></div>
+            </div>
+            <div class="inicio-cinta inicio-cinta--b">
+                <div class="inicio-cinta-grupo"><span class="inicio-cinta-unidad">no cheesecake</span><span class="inicio-cinta-unidad">no cheesecake</span><span class="inicio-cinta-unidad">no cheesecake</span></div>
+                <div class="inicio-cinta-grupo"><span class="inicio-cinta-unidad">no cheesecake</span><span class="inicio-cinta-unidad">no cheesecake</span><span class="inicio-cinta-unidad">no cheesecake</span></div>
+            </div>
+        </div>
+
+        <!-- ===================== cocina digital creativa ===================== -->
+        <p class="inicio-lema"><span>cocina</span> <span>digital</span> <span>creativa</span></p>
+
+        <!-- ===================== LA TARTA =====================
+             cuadrado que reserva el sitio > entrada (una vez) > giro continuo > imagen.
+             Variante "órbita": añadir la clase inicio-tarta--orbita a este contenedor. -->
+        <div class="inicio-tarta">
+            <div class="inicio-tarta-entrada">
+                <div class="inicio-tarta-gira">
+                    <picture>
+                        <source type="image/webp"
+                                srcset="/img/inicio-tarta-600.webp 600w, /img/inicio-tarta-900.webp 900w, /img/inicio-tarta-1200.webp 1200w"
+                                sizes="(max-width: 768px) 56vw, min(21vw, 463px)">
+                        <img class="inicio-tarta-img" src="/tarta/tarta-nueva.png" width="1451" height="1084" alt="" fetchpriority="high" decoding="async">
+                    </picture>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================== PRESENTACIÓN ===================== -->
+        <div class="inicio-texto">
+            <p>Somos un estudio de diseño y comunicación en Valencia, España con raíz en Guadalajara, México.</p>
+            <p>Nuestro estudio funciona con la lógica de una cocina, así que vas a leer palabras como menú, carta o platos. No te distraigas con eso, entra a nuestro mundo, que nosotros te llevamos de la mano.</p>
+            <p>¿Y por qué una cocina? Porque un buen plato, no sale del microondas.</p>
+        </div>
+
+        <!-- ===================== LO QUE COCINAMOS (estética de la carta de /servicios/) ===================== -->
+        <section class="inicio-bloque inicio-servicios" aria-labelledby="inicio-servicios-titulo">
+            <div class="inicio-bloque-head"><h2 class="inicio-bloque-titulo" id="inicio-servicios-titulo">Lo que cocinamos</h2></div>
+            <!-- cada fila abre su menú en la carta (/servicios/#id) -->
+            <ul class="inicio-filas">
+                <li><a class="inicio-fila inicio-fila--enlace" href="/servicios/#branding" aria-label="Branding: ver el Menú Branding en la carta"><span class="inicio-fila-nombre">Branding</span><span class="inicio-fila-ir" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+                <li><a class="inicio-fila inicio-fila--enlace" href="/servicios/#web" aria-label="Web/App: ver el Menú Web / App en la carta"><span class="inicio-fila-nombre">Web/App</span><span class="inicio-fila-ir" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+                <li><a class="inicio-fila inicio-fila--enlace" href="/servicios/#packaging" aria-label="Packaging: ver el Menú Packaging en la carta"><span class="inicio-fila-nombre">Packaging</span><span class="inicio-fila-ir" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+                <li><a class="inicio-fila inicio-fila--enlace" href="/servicios/#editorial" aria-label="Editorial: ver el Menú Editorial en la carta"><span class="inicio-fila-nombre">Editorial</span><span class="inicio-fila-ir" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+                <li><a class="inicio-fila inicio-fila--enlace" href="/servicios/#ecommerce" aria-label="Ecommerce: ver el Menú Ecommerce en la carta"><span class="inicio-fila-nombre">Ecommerce</span><span class="inicio-fila-ir" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+                <li><a class="inicio-fila inicio-fila--enlace" href="/servicios/#redes" aria-label="Redes: ver el Menú Redes en la carta"><span class="inicio-fila-nombre">Redes</span><span class="inicio-fila-ir" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+            </ul>
+        </section>
+
+        <!-- ===================== COCINEROS (misma estética; la fila entera es el enlace) ===================== -->
+        <section class="inicio-bloque inicio-cocineros" aria-labelledby="inicio-cocineros-titulo">
+            <div class="inicio-bloque-head"><h2 class="inicio-bloque-titulo" id="inicio-cocineros-titulo">Conoce a los cocineros</h2></div>
+            <ul class="inicio-filas">
+                <li><a class="inicio-fila inicio-fila--enlace" href="https://sotosotosoto.com" target="_blank" rel="noopener noreferrer" aria-label="Visitar la web de Xavier Soto (se abre en una pestaña nueva)"><span class="inicio-fila-nombre">Xavier Soto</span><span class="inicio-fila-ir" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 16 16 8M9 8h7v7"/></svg></span></a></li>
+                <li><a class="inicio-fila inicio-fila--enlace" href="https://luzamora.es" target="_blank" rel="noopener noreferrer" aria-label="Visitar la web de Lucía García (se abre en una pestaña nueva)"><span class="inicio-fila-nombre">Lucía García</span><span class="inicio-fila-ir" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 16 16 8M9 8h7v7"/></svg></span></a></li>
+            </ul>
+        </section>
+
+        <!-- solo para main.js: escribe en estos ids y anima .comanda__papel cada 7 s.
+             Oculto y sin href: no se ve ni recibe foco. -->
+        <a id="comanda" hidden><span class="comanda__papel"><span id="comandaNum"></span><span id="comandaPlato"></span><span id="comandaDesc"></span></span></a>
+    </main>
+
+
+    <footer class="footer">
+        <address class="pie-contacto">
+          <a href="mailto:estudio@chiskey.com">estudio@chiskey.com</a>
+          <a href="tel:+34623035107">+34 623 035 107</a>
+        </address>
+        <div class="social-icons overlay-social-icons">
+      <a href="https://www.instagram.com/chiskey.estudio/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"></a>
+      <a href="https://www.facebook.com/profile.php?id=61583073491287" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"></a>
+      <a href="https://www.tiktok.com/@chiskey.estudio" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok"></a>
+      <a href="http://linkedin.com/in/chiskey-estudio-creativo/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn"></a>
+        </div>
+        <span>cocina digital creativa ©2027</span>
+    </footer>
+
+    <script src="/reserva/reserva.js"></script>
+<script src="/main.js"></script>
+    <!-- la home: alto del header y tilt 3D de la tarta -->
+    <script src="/inicio.js" defer></script>
+    <!-- contacto rápido: en la home solo el globo, sin tarta flotante -->
+    <script src="/tarta/tarta.js" defer data-tarta-modo="globo"></script>
+</body>
+</html>

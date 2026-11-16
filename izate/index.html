@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Izate</title>
+<link rel="icon" type="image/png" href="https://res.cloudinary.com/dxsip0hvb/image/upload/v1763985477/Recurso_101_htujm4.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Urbanist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- plantilla compartida de las páginas de proyecto (scope body.page-proyecto) -->
+<link rel="stylesheet" href="/proyectos/proyecto.css">
+<!-- tarta flotante: pedir que te llamemos -->
+<link rel="stylesheet" href="/tarta/tarta.css">
+<!-- pie con contacto (solo en las páginas rediseñadas) -->
+<link rel="stylesheet" href="/pie/pie.css">
+<!-- entrada: fundido común y gestos (se apagan con ENTRADA_ACTIVA en /entrada.js) -->
+<link rel="stylesheet" href="/entrada.css">
+<script src="/entrada.js"></script>
+<!-- La comanda de Reservas (botón Reservas y "Escribirnos"): /reserva/ -->
+<link rel="stylesheet" href="/reserva/reserva.css">
+</head>
+<body class="page-proyecto">
+<!-- HEADER: el del sitio; en las páginas de proyecto el logo pasa a ser el nombre del proyecto -->
+<header class="navbar">
+  <div class="logo">
+    <a href="/">
+      <img src="https://res.cloudinary.com/dxsip0hvb/image/upload/v1763596790/LOGO_AZUL_CHISKEY_yu3mqz.png" alt="Chiskey estudio">
+    </a>
+  </div>
+  <nav class="menu">
+    <a href="#" id="menu-toggle" data-content="menu">Índice</a>
+  </nav>
+  <a href="#" class="reservas-btn" data-content="reservas">Reservas</a>
+</header>
+
+<!--
+  ============================================================
+  DATOS DEL PROYECTO: para completar o corregir, se edita solo este
+  HTML (el diseño está en /proyectos/proyecto.css).
+    · Nombre ........... en la cinta (<div class="py-cinta">, decorativa) y en el <h1 class="py-sr"> oculto
+                         (las mayúsculas las pone el CSS)
+    · El proyecto ...... <div class="py-intro">: el texto inicial, sin título
+    · Portada .......... <figure class="py-portada"> (src, srcset, alt; --foco = encuadre)
+    · La comanda ....... Folio = año · Comensal = cliente · una fila por servicio
+                         (si un dato no existe, se borra su línea; si hay herramientas,
+                         se añade un campo "Indicaciones" en <dl class="proyecto-comanda-campos">)
+    · Textos ........... La preparación (subtítulo + párrafos) y El resultado (cita)
+    · La mesa servida .. un <li class="py-g"> por imagen, en orden. El grid se compone
+                         solo según cuántas haya. --foco = encuadre; data-full = versión grande
+    · Siguiente ........ <a class="py-siguiente">: enlace, imagen, nombre y servicios
+  Orden de la navegación: izate → oliv.ia → el hogar → izate.
+  ============================================================
+-->
+<main class="py-main">
+  <article class="py-contenido">
+
+    <h1 class="py-sr">Izate</h1>
+    <!-- el nombre en cinta continua, como "chiskey" en la home (12 repeticiones por grupo; decorativa) -->
+    <div class="py-cinta py-cinta--derecha fade-entrada" aria-hidden="true">
+      <div class="py-cinta-grupo"><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span></div>
+      <div class="py-cinta-grupo"><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span><span class="py-cinta-unidad">Izate</span></div>
+    </div>
+
+    <!-- EL PROYECTO: el texto de la página, tal cual, sin título visible -->
+    <div class="py-intro fade-entrada">
+      <p>Izate representa la respuesta definitiva a la creciente complejidad en los sectores técnico y legal. Este despacho híbrido opera en la intersección estratégica entre la arquitectura y el derecho, donde la precisión técnica se une al rigor jurídico para ofrecer soluciones transversales e integrales.</p>
+      <p>El despacho gestiona bajo un mismo techo los desafíos más críticos, eliminando las ineficiencias que surgen al contratar servicios por separado.</p>
+    </div>
+
+    <!-- FICHA: portada + comanda escrita (solo lectura, con los datos reales del proyecto) -->
+    <section class="py-ficha" aria-label="Ficha del proyecto">
+      <figure class="py-portada">
+        <img src="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1200/v1777836504/izate_imagen_k0q4fu.png"
+              srcset="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_800/v1777836504/izate_imagen_k0q4fu.png 800w,
+                      https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1200/v1777836504/izate_imagen_k0q4fu.png 1200w,
+                      https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1800/v1777836504/izate_imagen_k0q4fu.png 1800w,
+                      https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_2400/v1777836504/izate_imagen_k0q4fu.png 2400w"
+              sizes="(min-width: 901px) 760px, 100vw" style="--foco: 40% 50%" fetchpriority="high"
+              alt="Cartel con el logo de Izate en una fachada">
+      </figure>
+
+      <div class="proyecto-comanda" role="group" aria-labelledby="pc-titulo">
+        <div class="proyecto-comanda-cabecera">
+          <h2 class="proyecto-comanda-titulo" id="pc-titulo">La comanda</h2>
+          <span class="proyecto-comanda-folio">Folio 2026</span>
+        </div>
+        <dl class="proyecto-comanda-campos">
+          <div class="proyecto-comanda-campo"><dt>Comensal</dt><dd>Izate Consulting 360</dd></div>
+        </dl>
+        <table class="proyecto-comanda-tabla">
+          <caption class="py-sr">Servicios servidos en Izate</caption>
+          <colgroup><col><col><col></colgroup>
+          <thead>
+            <tr><th scope="col">Cantidad</th><th scope="col">Concepto</th><th scope="col">Importe</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Branding</td><td><span aria-hidden="true">✓</span><span class="py-sr">servido</span></td></tr>
+            <tr><td>2</td><td>Web</td><td><span aria-hidden="true">✓</span><span class="py-sr">servido</span></td></tr>
+            <tr><td>3</td><td>Diseño</td><td><span aria-hidden="true">✓</span><span class="py-sr">servido</span></td></tr>
+            <tr><td>4</td><td>IA</td><td><span aria-hidden="true">✓</span><span class="py-sr">servido</span></td></tr>
+            <tr aria-hidden="true"><td></td><td></td><td></td></tr>
+            <tr aria-hidden="true"><td></td><td></td><td></td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td></td><th scope="row">Total</th><td>Servido</td></tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+    <!-- LA PREPARACIÓN y EL RESULTADO: una columna, textos tal cual -->
+    <section class="py-textos" aria-label="La receta del proyecto">
+      <div class="py-bloque fade-entrada">
+        <h2 class="py-rotulo">La preparación</h2>
+        <h3 class="py-subtitulo">Izate AI Strategy</h3>
+        <p>Izate no solo resuelve problemas, sino que optimiza el camino hacia la solución mediante la integración de Inteligencia Artificial avanzada. La IA en izate no es un simple chat de soporte, sino el motor central de la operativa y el principal solucionador y facilitador de estrategias para el cliente.</p>
+        <p>El agente de IA de izate está diseñado para facilitar soluciones inmediatas, optimizar servicios y diseñar estrategias personalizadas.</p>
+        <p>En izate, la tecnología no sustituye el criterio humano, lo potencia. La firma se posiciona como el aliado estratégico que utiliza la IA para que el cliente gane tiempo, claridad y seguridad en cada decisión sobre su patrimonio o su obra.</p>
+      </div>
+      <div class="py-bloque fade-entrada">
+        <h2 class="py-rotulo">El resultado</h2>
+        <blockquote class="py-cita">
+          <p>"La verdadera innovación de Izate no es solo lo que hacemos, sino cómo lo unificamos. Al eliminar las fronteras entre el plano y la norma, transformamos desafíos críticos en soluciones directas, fluidas y, sobre todo, integrales."</p>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- LA MESA SERVIDA: el grid se compone solo según cuántas <li> haya (ver proyecto.css) -->
+    <section class="py-mesa" aria-labelledby="py-mesa-titulo">
+      <h2 class="py-mesa-titulo fade-entrada" id="py-mesa-titulo">La mesa servida</h2>
+      <ul class="py-galeria">
+        <li class="py-g">
+          <button type="button" class="py-g-btn" aria-label="Ampliar imagen: Tarjetas de visita de Izate en azul y blanco">
+            <img src="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v1777842112/izate_imagen_ok8mnl.png"
+              srcset="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_600/v1777842112/izate_imagen_ok8mnl.png 600w,
+                      https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v1777842112/izate_imagen_ok8mnl.png 1000w,
+                      https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1600/v1777842112/izate_imagen_ok8mnl.png 1600w"
+              sizes="(min-width: 1024px) 560px, 100vw" style="--foco: 50% 50%" data-full="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_2000/v1777842112/izate_imagen_ok8mnl.png" loading="lazy" decoding="async"
+              alt="Tarjetas de visita de Izate en azul y blanco">
+          </button>
+        </li>
+        <li class="py-g">
+          <button type="button" class="py-g-btn" aria-label="Ampliar imagen: Logo de Izate en un sello circular">
+            <img src="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v1777842200/izate_imagen3-01_dcmb9h.png"
+              srcset="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_600/v1777842200/izate_imagen3-01_dcmb9h.png 600w,
+                      https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v1777842200/izate_imagen3-01_dcmb9h.png 1000w,
+                      https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1600/v1777842200/izate_imagen3-01_dcmb9h.png 1600w"
+              sizes="(min-width: 1024px) 560px, 100vw" style="--foco: 50% 50%" data-full="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_2000/v1777842200/izate_imagen3-01_dcmb9h.png" loading="lazy" decoding="async"
+              alt="Logo de Izate en un sello circular">
+          </button>
+        </li>
+        <li class="py-g">
+          <button type="button" class="py-g-btn" aria-label="Ampliar imagen: Logo de Izate en relieve sobre papel">
+            <img src="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v1777989178/izate__-01_g73jdd.png"
+              srcset="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_600/v1777989178/izate__-01_g73jdd.png 600w,
+                      https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v1777989178/izate__-01_g73jdd.png 1000w,
+                      https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1600/v1777989178/izate__-01_g73jdd.png 1600w"
+              sizes="(min-width: 1024px) 560px, 100vw" style="--foco: 50% 45%" data-full="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_2000/v1777989178/izate__-01_g73jdd.png" loading="lazy" decoding="async"
+              alt="Logo de Izate en relieve sobre papel">
+          </button>
+        </li>
+        <li class="py-g">
+          <button type="button" class="py-g-btn" aria-label="Ampliar imagen: Web de Izate con el chat abierto en un ordenador">
+            <img src="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v1777988398/tipo_izate-01_p8udor.png"
+              srcset="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_600/v1777988398/tipo_izate-01_p8udor.png 600w,
+                      https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v1777988398/tipo_izate-01_p8udor.png 1000w,
+                      https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1600/v1777988398/tipo_izate-01_p8udor.png 1600w"
+              sizes="(min-width: 1024px) 560px, 100vw" style="--foco: 50% 50%" data-full="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_2000/v1777988398/tipo_izate-01_p8udor.png" loading="lazy" decoding="async"
+              alt="Web de Izate con el chat abierto en un ordenador">
+          </button>
+        </li>
+        <li class="py-g">
+          <button type="button" class="py-g-btn" aria-label="Ampliar imagen: Carpeta y papelería de Izate sobre un escritorio con planos">
+            <img src="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v1777989249/izate_3-01_jjic9n.png"
+              srcset="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_600/v1777989249/izate_3-01_jjic9n.png 600w,
+                      https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v1777989249/izate_3-01_jjic9n.png 1000w,
+                      https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1600/v1777989249/izate_3-01_jjic9n.png 1600w"
+              sizes="(min-width: 1024px) 560px, 100vw" style="--foco: 50% 55%" data-full="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_2000/v1777989249/izate_3-01_jjic9n.png" loading="lazy" decoding="async"
+              alt="Carpeta y papelería de Izate sobre un escritorio con planos">
+          </button>
+        </li>
+        <li class="py-g">
+          <button type="button" class="py-g-btn" aria-label="Ampliar imagen: Chat de Izate en un móvil">
+            <img src="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v1777989053/izate_4-01_ncsyo6.png"
+              srcset="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_600/v1777989053/izate_4-01_ncsyo6.png 600w,
+                      https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v1777989053/izate_4-01_ncsyo6.png 1000w,
+                      https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1600/v1777989053/izate_4-01_ncsyo6.png 1600w"
+              sizes="(min-width: 1024px) 560px, 100vw" style="--foco: 50% 42%" data-full="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_2000/v1777989053/izate_4-01_ncsyo6.png" loading="lazy" decoding="async"
+              alt="Chat de Izate en un móvil">
+          </button>
+        </li>
+      </ul>
+    </section>
+
+    <nav class="py-nav fade-entrada" aria-label="Más proyectos">
+      <a class="py-volver" href="/proyectos/"><span aria-hidden="true">←</span> Volver a proyectos</a>
+      <a class="py-siguiente" href="/oliv_ia/">
+        <img class="py-sig-img" src="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_300/v1777990636/Gemini_Generated_Image_38hplg38hplg38hp_xcmlyg.png" alt="" loading="lazy" decoding="async" width="96" height="72">
+        <span class="py-sig-texto">
+          <span class="py-sig-label">Siguiente proyecto</span>
+          <span class="py-sig-nombre">Oliv.ia</span>
+          <span class="py-sig-serv">IA · App · Diseño</span>
+        </span>
+        <span class="py-sig-flecha" aria-hidden="true">→</span>
+      </a>
+    </nav>
+
+  </article>
+</main>
+
+<!-- FOOTER: el del sitio, sin tocar -->
+<footer class="footer">
+    <address class="pie-contacto">
+      <a href="mailto:estudio@chiskey.com">estudio@chiskey.com</a>
+      <a href="tel:+34623035107">+34 623 035 107</a>
+    </address>
+    <div class="social-icons overlay-social-icons">
+  <a href="https://www.instagram.com/chiskey.estudio/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"></a>
+  <a href="https://www.facebook.com/profile.php?id=61583073491287" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"></a>
+  <a href="https://www.tiktok.com/@chiskey.estudio" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok"></a>
+  <a href="http://linkedin.com/in/chiskey-estudio-creativo/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn"></a>
+    </div>
+    <span>cocina digital creativa ©2027</span>
+</footer>
+
+
+<script src="/reserva/reserva.js"></script>
+<script src="/main.js"></script>
+<script src="/proyectos/proyecto.js"></script>
+<script src="/tarta/tarta.js" defer></script>
+</body>
+</html>

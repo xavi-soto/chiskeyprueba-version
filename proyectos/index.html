@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proyectos</title>
+<link rel="icon" type="image/png" href="https://res.cloudinary.com/dxsip0hvb/image/upload/v1763985477/Recurso_101_htujm4.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Urbanist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- estilos propios de Proyectos (todo con scope body.page-proyectos) -->
+<link rel="stylesheet" href="/proyectos/proyectos.css">
+<!-- tarta flotante: pedir que te llamemos -->
+<link rel="stylesheet" href="/tarta/tarta.css">
+<!-- pie con contacto (solo en las páginas rediseñadas) -->
+<link rel="stylesheet" href="/pie/pie.css">
+<!-- entrada: fundido común y gestos (se apagan con ENTRADA_ACTIVA en /entrada.js) -->
+<link rel="stylesheet" href="/entrada.css">
+<script src="/entrada.js"></script>
+<!-- red de seguridad: si a los 1,5 s el observer de las tarjetas no respondió, se ven todas -->
+<script>setTimeout(function(){var h=document.documentElement;if(!h.classList.contains("pr-armado"))h.classList.add("pr-visibles")},1500);</script>
+<!-- La comanda de Reservas (botón Reservas y "Escribirnos"): /reserva/ -->
+<link rel="stylesheet" href="/reserva/reserva.css">
+</head>
+<body class="page-proyectos">
+<!-- HEADER: el del sitio, sin tocar (el color rosa lo pone proyectos.css, igual que en servicios) -->
+<header class="navbar">
+  <div class="logo">
+    <a href="/">
+      <img src="https://res.cloudinary.com/dxsip0hvb/image/upload/v1763596790/LOGO_AZUL_CHISKEY_yu3mqz.png" alt="Chiskey estudio">
+    </a>
+  </div>
+  <nav class="menu">
+    <a href="#" id="menu-toggle" data-content="menu">Índice</a>
+  </nav>
+  <a href="#" class="reservas-btn" data-content="reservas">Reservas</a>
+</header>
+
+<main class="pr-main">
+  <div class="pr-contenido">
+
+    <header class="pr-cabecera fade-entrada">
+      <h1 class="pr-titulo">Salido de cocina</h1>
+      <p class="pr-intro">Cada proyecto que sale de Chiskey tiene una historia detrás. Un encargo, una conversación, una idea a medio cocer. Aquí pueden ver cómo todo eso toma forma.</p>
+    </header>
+
+    <div class="pr-bloque-head fade-entrada">
+      <h2 class="pr-bloque-titulo">Comanda lista</h2>
+    </div>
+
+    <!--
+      GALERÍA
+      Interruptor de tarjetas vacías: data-vacias="mostrar" | "ocultar"
+      (cambiar esta sola línea las oculta todas).
+    -->
+    <section class="pr-galeria" data-vacias="mostrar" aria-label="Proyectos">
+
+      <!--
+        PLANTILLA DE TICKET (copiar, rellenar y pegar en lugar de un ticket vacío)
+        Campos a rellenar:
+          1. href ............ enlace al proyecto, desde la raíz (ej. /mi_proyecto/)
+          2. etiqueta ........ <span class="ticket-num"> arriba, en rosa (ej. Branding y web)
+          3. nombre .......... <h2 class="ticket-nombre">
+          4. imagen .......... los src de Cloudinary: solo cambia la parte final (v123/archivo.png).
+                               Mínimo 1600 px de alto si es horizontal, o 1600 × 1600 si ya es cuadrada.
+          5. texto alternativo  alt="" de la imagen
+          6. foco ............ style="--foco: 50% 50%" (qué parte de la imagen queda en el cuadrado)
+          7. mini descripción  <p class="ticket-desc"> (una o dos líneas; se corta a 2)
+
+            <a class="ticket" href="/mi_proyecto/">
+        <div class="ticket-papel">
+          <img class="ticket-img" style="--foco: 50% 50%"
+            src="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v123/archivo.png"
+            srcset="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_700/v123/archivo.png 700w,
+                    https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v123/archivo.png 1000w,
+                    https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1400/v123/archivo.png 1400w,
+                    https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_2000/v123/archivo.png 2000w"
+            sizes="(min-width: 1024px) 620px, (min-width: 640px) 85vw, 170vw"
+            width="1000" height="563" loading="lazy" decoding="async" alt="TEXTO ALTERNATIVO">
+          <div class="ticket-etiqueta">
+            <span class="ticket-num">ETIQUETA</span>
+            <h2 class="ticket-nombre">NOMBRE</h2>
+          </div>
+          <div class="ticket-talon">
+            <p class="ticket-desc">MINI DESCRIPCIÓN</p>
+            <span class="ticket-cta">Ver plato <span aria-hidden="true">→</span></span>
+          </div>
+        </div>
+      </a>
+      -->
+
+      <!-- IZATE -->
+      <a class="ticket" href="/izate/">
+        <div class="ticket-papel">
+          <img class="ticket-img" style="--foco: 30% 50%"
+            src="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v1777836504/izate_imagen_k0q4fu.png"
+            srcset="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_700/v1777836504/izate_imagen_k0q4fu.png 700w,
+                    https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v1777836504/izate_imagen_k0q4fu.png 1000w,
+                    https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1400/v1777836504/izate_imagen_k0q4fu.png 1400w,
+                    https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_2000/v1777836504/izate_imagen_k0q4fu.png 2000w"
+            sizes="(min-width: 1024px) 620px, (min-width: 640px) 85vw, 170vw"
+            width="1000" height="563" loading="lazy" decoding="async" alt="Cartel con el logo de Izate en una fachada">
+          <div class="ticket-etiqueta">
+            <span class="ticket-num">Branding Y Web</span>
+            <h2 class="ticket-nombre">Izate</h2>
+          </div>
+          <div class="ticket-talon">
+            <p class="ticket-desc">Despacho jurídico-pericial especializado en inmuebles, obras y herencias.</p>
+            <span class="ticket-cta">Ver plato <span aria-hidden="true">→</span></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- OLIV.IA -->
+      <a class="ticket" href="/oliv_ia/">
+        <div class="ticket-papel">
+          <img class="ticket-img" style="--foco: 50% 50%"
+            src="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v1777836464/olivia_imagen-01_bw9rq8.png"
+            srcset="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_700/v1777836464/olivia_imagen-01_bw9rq8.png 700w,
+                    https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v1777836464/olivia_imagen-01_bw9rq8.png 1000w,
+                    https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1400/v1777836464/olivia_imagen-01_bw9rq8.png 1400w,
+                    https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_2000/v1777836464/olivia_imagen-01_bw9rq8.png 2000w"
+            sizes="(min-width: 1024px) 620px, (min-width: 640px) 85vw, 170vw"
+            width="1000" height="559" loading="lazy" decoding="async" alt="Pantallas de la app Oliv.ia en varios móviles">
+          <div class="ticket-etiqueta">
+            <span class="ticket-num">App</span>
+            <h2 class="ticket-nombre">Oliv.ia</h2>
+          </div>
+          <div class="ticket-talon">
+            <p class="ticket-desc">App de recomendación de restaurantes impulsada por IA y reseñas reales de Yelp.</p>
+            <span class="ticket-cta">Ver plato <span aria-hidden="true">→</span></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- EL HOGAR -->
+      <a class="ticket" href="/el_hogar/">
+        <div class="ticket-papel">
+          <img class="ticket-img" style="--foco: 50% 50%"
+            src="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v1777836488/el_hogar_imagen-01_vyfzuh.png"
+            srcset="https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_700/v1777836488/el_hogar_imagen-01_vyfzuh.png 700w,
+                    https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1000/v1777836488/el_hogar_imagen-01_vyfzuh.png 1000w,
+                    https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_1400/v1777836488/el_hogar_imagen-01_vyfzuh.png 1400w,
+                    https://res.cloudinary.com/dxsip0hvb/image/upload/f_auto,q_auto,w_2000/v1777836488/el_hogar_imagen-01_vyfzuh.png 2000w"
+            sizes="(min-width: 1024px) 620px, (min-width: 640px) 85vw, 170vw"
+            width="1000" height="559" loading="lazy" decoding="async" alt="Imagen del proyecto El hogar">
+          <div class="ticket-etiqueta">
+            <span class="ticket-num">Branding</span>
+            <h2 class="ticket-nombre">El hogar</h2>
+          </div>
+          <div class="ticket-talon">
+            <p class="ticket-desc">Espacio de bienestar consciente: yoga, pilates, masajes y productos de meditación.</p>
+            <span class="ticket-cta">Ver plato <span aria-hidden="true">→</span></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- TICKETS VACÍOS: papel con renglones punteados, sin año, enlace ni texto. Reemplazar por la plantilla. -->
+      <div class="ticket ticket--vacio" aria-hidden="true">
+        <div class="ticket-papel"><span class="ticket-renglon"></span><span class="ticket-renglon"></span><span class="ticket-renglon"></span><span class="ticket-renglon"></span></div>
+      </div>
+      <div class="ticket ticket--vacio" aria-hidden="true">
+        <div class="ticket-papel"><span class="ticket-renglon"></span><span class="ticket-renglon"></span><span class="ticket-renglon"></span><span class="ticket-renglon"></span></div>
+      </div>
+      <div class="ticket ticket--vacio" aria-hidden="true">
+        <div class="ticket-papel"><span class="ticket-renglon"></span><span class="ticket-renglon"></span><span class="ticket-renglon"></span><span class="ticket-renglon"></span></div>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<!-- FOOTER: el del sitio, sin tocar -->
+<footer class="footer">
+    <address class="pie-contacto">
+      <a href="mailto:estudio@chiskey.com">estudio@chiskey.com</a>
+      <a href="tel:+34623035107">+34 623 035 107</a>
+    </address>
+    <div class="social-icons overlay-social-icons">
+  <a href="https://www.instagram.com/chiskey.estudio/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"></a>
+  <a href="https://www.facebook.com/profile.php?id=61583073491287" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"></a>
+  <a href="https://www.tiktok.com/@chiskey.estudio" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok"></a>
+  <a href="http://linkedin.com/in/chiskey-estudio-creativo/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn"></a>
+    </div>
+    <span>cocina digital creativa ©2027</span>
+</footer>
+
+
+<script src="/reserva/reserva.js"></script>
+<script src="/main.js"></script>
+<script src="/proyectos/proyectos.js"></script>
+<script src="/tarta/tarta.js" defer></script>
+</body>
+</html>

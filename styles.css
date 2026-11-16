@@ -1,0 +1,2688 @@
+/* -----------------------------------------------------------SEGUNDA PAGINA--------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;800&family=Urbanist:wght@400;600&display=swap');
+
+/* PAGINA INCIO ----------------------------------------------- */
+
+/* Color de fondo para toda la página */
+body {
+    background-color: #5B6C8F;
+    color: white; 
+    font-family: urbanist, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Cambiado de 100% a 100vh */
+    position: relative;
+    overflow-x: hidden; /* Evita scroll horizontal */
+    overflow-y: auto;   /* ¡ESTO ACTIVA EL SCROLL VERTICAL! */
+}
+
+.page-index{
+  overflow-y: hidden;
+}
+
+/* --- ESTILOS DE LA CABECERA / MENÚ --- */
+
+.navbar {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    padding: 20px clamp(20px, 8vw, 140px); /* El padding lateral se encoge solo */
+    position: relative;
+    z-index: 91000 !important;
+    animation: fadeInDown 1.5s ease-out forwards;
+}
+
+.navbar-tupedido {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    padding: 20px clamp(20px, 8vw, 140px); /* El padding lateral se encoge solo */
+    position: relative;
+    z-index: 91000 !important;
+    background-color: #E91E63;
+    transition: background-color 0.3s ease;
+}
+
+.overlay-open .navbar-tupedido {
+  background-color: white;
+  transition: background-color 0.3s ease;
+}
+
+
+
+.logo img {
+    height: clamp(80px, 8vh, 100px); /* El logo escala según la altura de pantalla */
+    width: auto;
+}
+
+.menu {
+  position: absolute;        /* la sacamos del flujo para centrarla en la barra */
+  left: 50%;                 /* punto central del viewport/elemento padre */
+  top: 50%;                  /* opcional: centra verticalmente dentro de la navbar */
+  transform: translate(-50%, -50%); /* centra exactamente por su propio ancho/alto */
+  display: flex;
+  gap: 55px;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto; /* mantener interactividad */
+  z-index: 100000; /* por encima de la imagen si hace falta */
+  width: auto; /* que mida su contenido */
+}
+
+/* tamaño del texto del menú (cortinilla), responsivo en todas las pantallas */
+body .overlay-content a {
+    font-size: clamp(1.6rem, 5vw, 3rem);
+}
+
+/* el hueco de la barra de scroll queda siempre reservado: al abrir el Índice
+   la barra desaparece pero la página no se mueve hacia los lados */
+html { scrollbar-gutter: stable; }
+/* con el menú abierto, la página de atrás no se mueve: el scroll se bloquea en <html>
+   (sin fijar el body, que la devolvía arriba del todo y daba un brinco) */
+html:has(body.overlay-open) { overflow: hidden; }
+/* el body no recorta (si no, sería él el contenedor y la cabecera no se quedaría arriba) */
+body.overlay-open {
+    overflow: visible;
+}
+/* con el menú abierto la cabecera se queda arriba aunque la página esté bajada,
+   para que la X siga a la vista; sticky no la saca del flujo: nada se mueve */
+body.overlay-open .navbar,
+body.overlay-open .navbar-tupedido {
+    position: sticky;
+    top: 0;
+}
+
+/* Modificación del botón */
+.menu a {
+    color: white; /* Color inicial (blanco) */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    transition: color 0.1s; 
+    font-family: 'Urbanist', sans-serif;   /* la misma tipografía que .reservas-btn */
+    cursor: default;
+    display: inline-block;
+    position: relative; 
+    z-index:  20 !important;
+    padding: 0 20px; 
+    cursor: pointer; 
+    transition: color 0.3s, font-size 0.3s;
+}
+
+/* El texto dentro del botón (MENU o X) */
+.menu a #menu-text {
+    /* El span es el que cambia de color, hereda del padre por defecto */
+    color: inherit;
+    transition: color 0.3s;
+}
+
+/* CLASE ACTIVA: El botón cambia de color a negro cuando el overlay está abierto */
+.menu a.active, 
+.menu a.active #menu-text {
+    /* ¡CRÍTICO! El texto debe ser NEGRO para verse sobre la cortina blanca */
+    color: black !important; 
+}
+
+
+/* Corchete de apertura '[' */
+.menu a::before {
+    content: '['; 
+    color: inherit; /* Hereda el color del <a>, que será blanco o negro */
+    font-size: 2em;
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 3;
+    font-weight: normal;
+    pointer-events: none;
+}
+
+/* Corchete de cierre ']' */
+.menu a::after {
+    content: ']';
+    color: inherit; /* Hereda el color del <a>, que será blanco o negro */
+    font-size: 2em;
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 3;
+    font-weight: normal;
+    pointer-events: none;
+}
+
+
+.content-body {
+    display: flex;
+    justify-content: flex-start;
+    max-width: 1300px;
+    margin: 0 auto; 
+    position: relative; 
+    
+}
+/*IMAGEN INICIAL*/
+.main-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: -50px;
+    z-index: 10;
+}
+
+.main-image img {
+    width: 100%;
+    max-width: 1255px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: -3%;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.img-mobile {
+    display: none; /* Oculta la versión móvil en pantallas grandes */
+}
+
+.img-desktop {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Configuración para tablets y móviles */
+@media (max-width: 768px) {
+
+    .img-desktop {
+        display: none; /* Oculta la versión horizontal */
+    }
+    
+    .img-mobile {
+        display: block; /* Muestra la versión vertical */
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        padding-top: 60px;
+        animation: fadeIn 2s ease-in-out; /* Mantiene tu animación existente */
+    }
+
+
+    /* Ajuste opcional para el contenedor en móvil */
+  .content-body{
+    margin:30px;
+  
+  }
+  .main-image{
+    margin-top: 10px;
+  }
+}
+/* --- ESTILOS DEL MODAL --- */
+/* Overlay: inicial oculto, pero interactuable cuando está abierto */
+.modal {
+    display: none; /* inicia oculto */
+    position: fixed;
+    z-index:999999  !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #5b6c8fc0;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    pointer-events: auto; /* permite clicks en todo el overlay */
+   
+    
+}
+
+/* Modal contenido */
+.modal-content {
+    background-color: #ffffff;
+    color: #5B6C8F;
+    padding: 50px;
+    border-radius: 2px;
+    max-width: 320px;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 99999999999;
+     font-size: 0.9rem;  /* cambia el tamaño general */
+      font-family: 'Urbanist', sans-serif;
+      font-weight: 900;
+}
+
+.tiempo-respuesta {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-top: -30px;
+    margin-bottom: 25px;
+}
+
+
+
+.gracias-box {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.gracias-box p {
+     font-family: 'Urbanist', sans-serif;
+      font-weight: 900;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.gracias-img {
+    width: 190px;   /* Ajusta el tamaño */
+    
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+/* Botón cerrar */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #E91E63;
+     z-index: 99999999999;
+
+}
+
+/* Cambia color al pasar mouse */
+.close-btn:hover {
+    color: #5B6C8F;
+     z-index: 99999999999;
+}
+
+
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #5B6C8F;
+    text-decoration: none;
+    cursor: pointer;
+     z-index: 99999999999;
+}
+
+/* Animación extra */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+/* ---- ESTILO INTERNO DEL FORMULARIO ---- */
+.modal-content h2 {
+    margin-top: -10px;   /* sube el título dentro del modal */
+    margin-bottom: 40px;
+    font-size: 1.2rem;
+     font-family: 'Urbanist', sans-serif;
+      font-weight: 900;
+}
+
+
+
+/* contenedor del formulario */
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap:14px;  /* espacio entre cada sección */
+     font-family: 'Urbanist', sans-serif;
+      font-weight: 900;
+}
+
+/* cada label + input */
+.modal-form label {
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.modal-form input,
+.modal-form textarea {
+    margin-top:-22px;
+    display: block; 
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #5B6C8F;
+    border-radius: 1px;
+    font-size: 0.8rem;
+    box-sizing: border-box;
+}
+
+/* textarea más grande */
+.modal-form textarea {
+    min-height: 5px;
+    resize: vertical;
+}
+
+/* botón enviar */
+.modal-form button[type="submit"] {
+    margin-top: 20px;
+    background-color: #E91E63;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 1px;
+    cursor: pointer;
+}
+
+.modal-form button[type="submit"]:hover {
+    background-color: #5B6C8F;
+}
+
+
+
+
+/* --- KEYFRAMES --- */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}/* /* --- BOTÓN DE RESERVAS CON ONDA SUAVE --- */
+.reservas-btn {
+    background-color: #E91E63; 
+    color: rgb(255, 255, 255); 
+    text-decoration: none;
+    font-weight: 700;          /* igual que "Índice" (antes 900) */
+    padding: 4px 5px; 
+    border-radius: 1px; 
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1em;            /* igual que "Índice" (antes 0.9em); en ≤900px ambos 14px */
+    margin-left: auto; 
+   /* Entrada suave */ 
+    /* --- CAMBIO: Usamos fadeInDown para que caiga desde arriba --- */
+    opacity: 1;
+    animation: fadeInDown 1.5s ease-out forwards;
+    
+    /* CRÍTICO: El botón debe ser el contexto de posición */
+    position: relative; 
+    
+    
+    
+    /* Asegúrate de que el botón esté por encima de la onda */
+    z-index: 10000; 
+}
+
+/* Onda/destello detrás del botón con misma forma */
+.reservas-btn::before {
+    content: "";
+    
+    /* La posición absoluta se basa en el padre (.reservas-btn) */
+    position: absolute;
+    
+    /* Centrarlo perfectamente */
+    top: 50%;
+    left: 50%;
+    
+    /* Hazlo ligeramente más grande que el botón para la onda */
+    width: 105%; 
+    height: 155%;
+    
+    background-color: #E91E63;
+    border-radius:2px;
+    
+    /* El z-index debe ser NEGATIVO para ir detrás del botón (z-index: 2) */
+    z-index: -2; 
+
+    /* Transformación inicial para centrar */
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+    pointer-events: none;
+    animation: wave-button 2s infinite;
+    
+}
+
+/* Animación onda/destello */
+@keyframes wave-button {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.3);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.6);
+        opacity: 0;
+    }
+}
+
+/* --- ESTILOS DE LA CINTA DE TEXTO (SCROLLING MARQUEE) --- */
+
+.scrolling-text-container {
+    width: 50%;
+    margin: 50px auto 0 auto;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+      margin-top: clamp(460px, 48vh, 480px);
+    text-align: center;
+
+    mask-image: linear-gradient(to right,
+                                rgba(0,0,0,0) 0%,
+                                rgba(0,0,0,1) 15%,
+                                rgba(0,0,0,1) 85%,
+                                rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to right,
+                                        rgba(0,0,0,0) 0%,
+                                        rgba(0,0,0,1) 15%,
+                                        rgba(0,0,0,1) 85%,
+                                        rgba(0,0,0,0) 100%);
+}
+
+/* Track que contiene 2 copias del texto */
+.scrolling-track {
+    display: inline-flex; /* Mantiene ambas copias alineadas */
+    white-space: nowrap;
+    animation: loop 20s linear infinite;
+}
+ 
+.scrolling-track span {
+    color: #F8A07B;
+    /* Mínimo 0.8rem, ideal 2vw, máximo 1.5rem */
+    font-size: clamp(0.6rem, 1.2vw, 0.9rem); 
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    letter-spacing: 1px;
+    word-spacing: 1em;
+    padding-right: 2em; 
+}
+
+/* Animación perfecta sin saltos */
+@keyframes loop {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+
+/* --- NUEVO KEYFRAME para aparecer desde arriba --- */
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        /* Se desplaza hacia arriba, fuera de la pantalla */
+        transform: translateY(-60px); 
+    }
+    100% {
+        opacity: 1;
+        /* Llega a su posición normal */
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes buttonFadeDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px); /* Movimiento un poco más drástico */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Keyframe para que el contenido del overlay aparezca gradualmente */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+.overlay {
+    height: 0; /* INICIA CERRADO */
+    width: 100%;
+    position: fixed; /* Cubre toda la pantalla */
+     z-index: 90000 !important; /* Máximo z-index para estar sobre todo */
+    top: 0;
+    left: 0;
+    background-color: white; /* Color de la cortina */
+    overflow-y: hidden; /* Oculta el contenido extra al cerrarse */
+    transition: height 0.5s ease-in-out; /* TRANSICIÓN CLAVE: Baja suavemente */
+     transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+     pointer-events: none; 
+     
+}
+.overlay.closing {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.overlay {
+    pointer-events: none;
+}
+
+.overlay.open ~ .social-icons img {
+    pointer-events: none;
+}
+/* ACTIVAR SOLO ZONAS INTERACTIVAS */
+.overlay.open .overlay-content,
+.overlay.open .overlay-footer,
+.overlay.open .overlay-x {
+    pointer-events: auto;
+}
+
+.overlay.active {
+  pointer-events: auto;   /* solo captura clics cuando está activo */
+}
+/* Estado abierto (añadido por JavaScript) */
+.overlay.open {
+    pointer-events: auto; /* solo captura clicks cuando está abierto */
+    opacity: 1;
+    height: 100%;
+    
+}
+
+/* --- ESTILOS DEL CONTENIDO DENTRO DEL OVERLAY (TRES TEXTOS) --- */
+.overlay-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px; /* Espacio entre los textos centrales */
+    /* Aseguramos que el contenido esté visible */
+    opacity: 0; 
+    transform: translateY(20px);
+    transition: opacity 0.5s 0.2s, transform 0.5s 0.2s; /* Pequeño retraso para que aparezca después de la cortina */
+}
+
+/* Para que el contenido aparezca cuando el overlay está abierto */
+.overlay.open .overlay-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.overlay-content a {
+    padding: 10px;
+    text-decoration: none;
+    font-size: 4.0em; 
+    color: #E91E63; /* Color del texto (ej. el color de fondo de tu body) */
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    transition: color 0.3s;
+    line-height: 0.5; /* <-- aquí ajustas el interlineado */
+}
+
+.overlay-content a:hover {
+    color: #E91E63; /* Color de hover */
+}
+
+
+#menu-toggle {
+    position: relative;
+    z-index: 9999999 !important;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 60px;      /* el ancho de antes: "Índice" cabe dentro y los corchetes siguen en su sitio */
+  height: 40px;
+}
+
+#menu-toggle.active {
+    font-weight: bold; /* Muy gruesa */
+    
+    color: #5B6C8F !important;
+}
+
+
+/* ==========================================================================
+   FOOTER · fuente única de todas sus reglas (antes repartidas por el archivo)
+   Estático, en flujo normal, iconos arriba + © abajo. Encima, un borde de
+   papel arrancado y un tono un poco más oscuro, como la matriz de un ticket.
+   ========================================================================== */
+:root {
+    /* radios de esquina: las píldoras de la web pasan a formas más cuadradas */
+    --radio-boton: 6px;     /* botones y etiquetas pequeñas */
+    --radio-bloque: 12px;   /* píldoras grandes y contenedores en forma de píldora */
+    /* espacio entre la cabecera y lo primero visible del contenido (igual en todas las páginas).
+       Es la distancia mayor que había entre las páginas a cada ancho: ninguna se acerca a la cabecera. */
+    --contenido-inicio: clamp(43px, 6.47vw, 140px);
+    /* profundidad del borde rasgado (en móvil se usa algo menos, ver abajo) */
+    --footer-rasgado-alto: 5px;
+    /* opacidad de la capa oscura del footer: 0 = sin tono, 0.07 = más marcado */
+    --footer-tono: 0.05;
+}
+@media (max-width: 768px) {
+    :root {
+        --footer-rasgado-alto: 3.5px;
+        --contenido-inicio: clamp(43px, 7.01vw, 54px);
+    }
+}
+
+.footer {
+    position: relative;            /* referencia del borde rasgado (no mueve nada) */
+    isolation: isolate;            /* el tono queda detrás de iconos y texto */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 0;
+    margin-top: auto;              /* en páginas con body en columna (home, comanda) baja al fondo */
+    padding: 20px 0 14px;
+    background: transparent;
+    color: white;
+    font-size: 0.75em;
+    font-family: 'Urbanist', sans-serif;
+    text-align: center;
+    /* páginas cortas: el mismo tono sigue debajo del footer hasta el borde de la ventana
+       (una sombra no crea scroll ni cambia el layout; solo se pinta fuera de la caja) */
+    box-shadow: 0 100vh 0 100vh rgba(0, 0, 0, var(--footer-tono));
+}
+
+/* tono + borde rasgado en UNA sola capa (sin costura entre borde y cuerpo):
+   la franja de arriba lleva la máscara irregular y el resto es sólido */
+.footer::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: calc(var(--footer-rasgado-alto) * -1);
+    z-index: -1;
+    background: rgba(0, 0, 0, var(--footer-tono));
+    pointer-events: none;
+    -webkit-mask:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 10' preserveAspectRatio='none'%3E%3Cpath d='M0 10V2Q2.9 2.26 5.7 1.44Q14.0 3.45 22.3 3.61Q30.8 3.80 39.2 3.14Q44.6 3.49 50 3.43Q53.5 3.56 57.1 2.47Q68.2 4.11 79.3 7.07Q89.2 4.12 99 2.91Q111.1 2.88 123.2 1.94Q129.5 4.26 135.8 5.99Q141.8 4.27 147.7 2.83Q159.5 4.44 171.3 5.87Q179.4 3.39 187.5 1.37Q191.1 1.66 194.6 1.98Q206.8 0.86 219.1 1.26Q224.9 0.91 230.7 2.3Q239.1 1.07 247.4 1.53Q254.9 2.04 262.5 3.14Q270.6 2.94 278.8 3.36Q285.8 1.88 292.8 1.6Q299.3 2.16 305.8 2.17Q317.6 4.64 329.3 8.6Q331.1 5.85 333 4.89Q338.2 2.04 343.4 1.18Q352.3 5.82 361.2 9.11Q373.1 7.41 385 4.23Q390.8 4.07 396.5 5.74Q397.6 4.17 398.6 1.53Q406.5 1.18 414.3 1.55Q419.6 2.67 425 4.18Q427.0 7.44 429 9.06Q441.2 9.62 453.4 9Q466.1 5.18 478.8 3.32Q484.1 6.31 489.3 7.32Q491.9 4.80 494.4 3.46Q497.7 6.57 501 9.1Q503.4 4.78 505.8 0.75Q517.4 1.65 529 4.42Q536.2 5.63 543.4 8.14Q550.3 7.84 557.3 6.52Q565.9 5.31 574.5 3.09Q580.9 2.19 587.2 2.29Q593.4 4.15 599.5 4.58Q611.2 3.62 622.9 1.4Q627.3 1.75 631.6 2.83Q644.0 2.01 656.5 1.35Q661.1 1.62 665.8 2.69Q673.9 1.88 682 2.05Q685.3 3.17 688.5 2.77Q698.8 2.90 709 1.54Q716.3 5.31 723.5 8.36Q735.6 5.84 747.8 3.32Q751.1 3.89 754.4 3Q766.3 4.73 778.3 5.18Q779.5 5.49 780.7 4.55Q793.2 5.38 805.7 5.17Q815.5 6.92 825.2 6.78Q832.4 5.62 839.6 3.7Q846.8 4.25 853.9 5.65Q866.6 7.81 879.4 9.13Q883.6 7.97 887.9 7.51Q891.6 6.08 895.4 3.19Q903.2 1.37 911 0.9Q917.1 3.41 923.3 4.53Q927.3 7.14 931.2 9.12Q941.8 7.20 952.4 4.02Q963.5 3.39 974.5 2.89Q981.5 3.33 988.6 2.58Q998.8 3.51 1009 3.13Q1020.9 2.93 1032.7 4.55Q1040.6 3.99 1048.5 4.5Q1052.3 3.71 1056.1 4.13Q1066.4 2.99 1076.8 3.75Q1082.2 2.54 1087.6 1.02Q1098.6 2.86 1109.6 3.45Q1117.0 3.40 1124.4 2.85Q1130.2 3.30 1135.9 2.34Q1140.8 2.67 1145.6 1.53Q1156.8 3.06 1168 3.33Q1172.2 3.22 1176.4 4.28Q1177.7 2.61 1178.9 0.69Q1190.8 3.04 1202.8 5.56Q1212.8 5.09 1222.8 5.08Q1226.0 4.10 1229.2 2.97Q1233.5 3.72 1237.7 3.46Q1246.2 3.62 1254.7 3.71Q1265.1 2.12 1275.4 1Q1277.6 4.20 1279.8 7.41Q1285.0 4.75 1290.3 3.12Q1295.7 2.37 1301.1 0.81Q1308.2 2.57 1315.2 3.24Q1319.3 2.51 1323.3 2.6Q1330.5 2.69 1337.8 3.76Q1349.8 2.79 1361.9 1.36Q1366.5 5.40 1371 9.24Q1374.6 8.40 1378.2 5.81Q1389.9 3.90 1401.6 1.71Q1404.9 1.91 1408.2 2.84Q1409.8 2.38 1411.4 1.51Q1412.5 4.73 1413.6 7.65Q1424.7 5.42 1435.8 2.64Q1437.9 2.46 1440 2V10Z'/%3E%3C/svg%3E") top left / 1440px var(--footer-rasgado-alto) repeat-x,
+        linear-gradient(#000 0 0) 0 calc(var(--footer-rasgado-alto) - 1px) / 100% 100% no-repeat;
+            mask:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 10' preserveAspectRatio='none'%3E%3Cpath d='M0 10V2Q2.9 2.26 5.7 1.44Q14.0 3.45 22.3 3.61Q30.8 3.80 39.2 3.14Q44.6 3.49 50 3.43Q53.5 3.56 57.1 2.47Q68.2 4.11 79.3 7.07Q89.2 4.12 99 2.91Q111.1 2.88 123.2 1.94Q129.5 4.26 135.8 5.99Q141.8 4.27 147.7 2.83Q159.5 4.44 171.3 5.87Q179.4 3.39 187.5 1.37Q191.1 1.66 194.6 1.98Q206.8 0.86 219.1 1.26Q224.9 0.91 230.7 2.3Q239.1 1.07 247.4 1.53Q254.9 2.04 262.5 3.14Q270.6 2.94 278.8 3.36Q285.8 1.88 292.8 1.6Q299.3 2.16 305.8 2.17Q317.6 4.64 329.3 8.6Q331.1 5.85 333 4.89Q338.2 2.04 343.4 1.18Q352.3 5.82 361.2 9.11Q373.1 7.41 385 4.23Q390.8 4.07 396.5 5.74Q397.6 4.17 398.6 1.53Q406.5 1.18 414.3 1.55Q419.6 2.67 425 4.18Q427.0 7.44 429 9.06Q441.2 9.62 453.4 9Q466.1 5.18 478.8 3.32Q484.1 6.31 489.3 7.32Q491.9 4.80 494.4 3.46Q497.7 6.57 501 9.1Q503.4 4.78 505.8 0.75Q517.4 1.65 529 4.42Q536.2 5.63 543.4 8.14Q550.3 7.84 557.3 6.52Q565.9 5.31 574.5 3.09Q580.9 2.19 587.2 2.29Q593.4 4.15 599.5 4.58Q611.2 3.62 622.9 1.4Q627.3 1.75 631.6 2.83Q644.0 2.01 656.5 1.35Q661.1 1.62 665.8 2.69Q673.9 1.88 682 2.05Q685.3 3.17 688.5 2.77Q698.8 2.90 709 1.54Q716.3 5.31 723.5 8.36Q735.6 5.84 747.8 3.32Q751.1 3.89 754.4 3Q766.3 4.73 778.3 5.18Q779.5 5.49 780.7 4.55Q793.2 5.38 805.7 5.17Q815.5 6.92 825.2 6.78Q832.4 5.62 839.6 3.7Q846.8 4.25 853.9 5.65Q866.6 7.81 879.4 9.13Q883.6 7.97 887.9 7.51Q891.6 6.08 895.4 3.19Q903.2 1.37 911 0.9Q917.1 3.41 923.3 4.53Q927.3 7.14 931.2 9.12Q941.8 7.20 952.4 4.02Q963.5 3.39 974.5 2.89Q981.5 3.33 988.6 2.58Q998.8 3.51 1009 3.13Q1020.9 2.93 1032.7 4.55Q1040.6 3.99 1048.5 4.5Q1052.3 3.71 1056.1 4.13Q1066.4 2.99 1076.8 3.75Q1082.2 2.54 1087.6 1.02Q1098.6 2.86 1109.6 3.45Q1117.0 3.40 1124.4 2.85Q1130.2 3.30 1135.9 2.34Q1140.8 2.67 1145.6 1.53Q1156.8 3.06 1168 3.33Q1172.2 3.22 1176.4 4.28Q1177.7 2.61 1178.9 0.69Q1190.8 3.04 1202.8 5.56Q1212.8 5.09 1222.8 5.08Q1226.0 4.10 1229.2 2.97Q1233.5 3.72 1237.7 3.46Q1246.2 3.62 1254.7 3.71Q1265.1 2.12 1275.4 1Q1277.6 4.20 1279.8 7.41Q1285.0 4.75 1290.3 3.12Q1295.7 2.37 1301.1 0.81Q1308.2 2.57 1315.2 3.24Q1319.3 2.51 1323.3 2.6Q1330.5 2.69 1337.8 3.76Q1349.8 2.79 1361.9 1.36Q1366.5 5.40 1371 9.24Q1374.6 8.40 1378.2 5.81Q1389.9 3.90 1401.6 1.71Q1404.9 1.91 1408.2 2.84Q1409.8 2.38 1411.4 1.51Q1412.5 4.73 1413.6 7.65Q1424.7 5.42 1435.8 2.64Q1437.9 2.46 1440 2V10Z'/%3E%3C/svg%3E") top left / 1440px var(--footer-rasgado-alto) repeat-x,
+        linear-gradient(#000 0 0) 0 calc(var(--footer-rasgado-alto) - 1px) / 100% 100% no-repeat;
+}
+
+@media (max-width: 850px) {
+    .footer {
+        font-size: 0.65rem;
+        line-height: 1;
+    }
+}
+
+/* la home declara position: static en su <style>; relative no mueve nada y sostiene el borde rasgado */
+html body.page-index .footer { position: relative; }
+
+.footer .social-icons {
+    position: static !important;
+    inset: auto !important;
+    transform: none !important;
+    justify-content: center !important;
+    margin: 0 !important;
+}
+
+@media (max-width: 768px) {
+    body.page-index .footer {
+        position: relative !important;   /* era static: relative no mueve nada y sostiene el borde rasgado */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 12px !important;
+        min-height: 0 !important;
+        padding: 100px 0 5px !important;   /* aire arriba / abajo */
+        background: transparent !important;
+    }
+}
+
+/* .footer-horno: footer fijo de la página de pedido (hoy ninguna página lo usa) */
+.footer-horno {
+    text-align: center;            /* Centra el texto */
+    padding: 20px 0;               /* Espacio arriba y abajo */
+    font-family: 'Urbanist', sans-serif;
+    font-size: 0.75em;
+    color: white;                  /* Cambia según tu fondo */
+    background-color: #E91E63; /* O un color si quieres */
+    position: fixed;               /* Fijo en la ventana */
+    bottom: 0;                     /* Siempre abajo */
+    left: 0;
+    width: 100%;                   /* Que ocupe todo el ancho */
+    z-index: 1000;                 /* Por encima del contenido */
+}
+@media (max-width: 850px) {
+    .footer-horno {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        min-height: 15px !important;
+        padding: 39px 0 1px 0 !important;
+        background-color: #E91E63;
+        position: fixed !important;
+        bottom: 0 !important;
+        width: 100% !important;
+    }
+}
+/* ======================== fin del FOOTER ======================== */
+
+.page-sobreck{
+  background-color: #E91E63;
+}
+
+
+
+
+/* CSS */
+
+
+
+.overlay.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+.overlay-footer,
+.overlay-footer-right {
+    position: absolute;
+    bottom: clamp(10px, 5vh, 40px);
+    font-family: 'Urbanist', sans-serif;
+    font-size: clamp(0.7rem, 1.5vw, 1rem); /* Texto fluido */
+    color: #5B6C8F;
+    transition: opacity 0.5s ease;
+    width: auto;
+}
+
+.overlay-footer { left: clamp(20px, 8vw, 140px); }
+.overlay-footer-right { right: clamp(20px, 8vw, 140px); }
+
+
+
+
+
+.overlay-footer-right a {
+    color: #5B6C8F;
+    text-decoration: none;
+}
+
+.overlay-footer-right a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+/* --- MEDIA QUERY para hacerlo responsivo en móviles (Mantenido) --- */
+
+
+/* --- EFECTO DE TEXTO DESLIZANTE (CINTA) PARA EL OVERLAY --- */
+.overlay-content a {
+    position: relative;
+    display: inline-block;
+    overflow: hidden; /* evita que se vea el texto fuera */
+}
+
+.overlay-content a span {
+    display: block;
+    transform: translateY(0);
+    transition: transform 0.4s ease;
+}
+
+/* al pasar el mouse */
+.overlay-content a:hover span {
+    animation: slideUpOnce 0.45s ease forwards;
+}
+
+@keyframes slideUpOnce {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    40% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    41% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Evita el corte de letras con descendentes (p, q, g, y, j) */
+.overlay-content a {
+    line-height: 0.8em;   /* más espacio vertical */
+    padding-bottom: 10px;  /* evita que la cola se corte */
+}
+
+
+
+
+
+/* Redes sociales abajo a la derecha (en fila) */
+.social-icons {
+    position: fixed;
+    bottom: 5px;
+    right: 25px;
+    display: flex;
+    flex-direction: row;      /* 🔥 ahora en fila */
+    gap: 15px;
+    z-index: 1000;
+}
+
+.social-icons img {
+    width: 17px;
+    height: 30px;
+    filter: invert(1);        /* 🔥 los vuelve blancos */
+    opacity: 0.85;
+    transition: transform 0.2s ease, opacity 0.2s ease, filter 0.3s ease; /* 🔥 delay */
+}
+
+
+.social-icons img:hover {
+    transform: translateY(-3px) scale(1.1); /* hover elegante */
+    opacity: 1;
+}
+
+
+
+
+
+
+
+/* Logo animación: baja desde arriba */
+.overlay-logo {
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Footer animación: sube desde abajo */
+
+
+/* Social icons: suben desde abajo */
+.overlay-social-icons {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Cuando overlay está abierto, activamos animación con retrasos */
+.overlay.open .overlay-logo {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s;
+}
+
+.overlay.open .overlay-footer {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.7s;
+}
+
+.overlay.open .overlay-social-icons {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.9s;
+}
+
+
+.overlay-logo,
+.overlay-footer,
+.overlay-social-icons {
+    opacity: 1;        /* visibles por defecto */
+    transform: translateY(0); /* posición normal */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+
+
+/* ==========================================================================
+// --- SECCION DE MEDIA QUERIES ---
+// ========================================================================== */
+
+
+/* --- MEDIA QUERY para hacerlo responsivo en móviles (General 850px) --- */
+@media (max-width: 850px) {
+
+    .menu {
+        margin-top: 15px;
+        flex-wrap: wrap; 
+        justify-content: center;
+    }
+.overlay-footer-right { right: auto; }
+
+    .body {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+}
+
+
+
+/* ------------------------------
+   TABLET Y MÓVIL GENERAL (<=768px) - Navbar, Overlay Menu/Footer, Modal, Social Icons
+   ------------------------------ */
+@media (max-width: 768px) {
+    
+    .menu {
+        flex-grow: 1; /* Permite que el menú se centre */
+        text-align: center;
+        position: static;
+        transform: none;
+        gap: 10px;
+        padding: 0 10px;
+    }
+    .reservas-btn { 
+        font-size: 0.875rem;   /* 14px como mínimo: en minúscula no se lee más pequeño */
+        margin-left: 0; 
+    }
+    
+    /* Overlay Menu: Tamaño de fuente fluido reducido */
+    .overlay-content {
+        gap: 15px;
+    }
+    .overlay-content a {
+        font-size: 7vw; /* Se ajusta el tamaño de fuente usando Viewport Width (7vw) */
+        line-height: 1.0; 
+    }
+    
+    .overlay-footer{
+    text-align: center;            /* Centra el texto */
+    padding: 20px 0;               /* Espacio arriba y abajo */
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1em;
+    color: #5B6C8F;                  /* Cambia según tu fondo */
+    background-color: transparent; /* O un color si quieres */
+    position: absolute;               /* Fijo en la ventana */
+    bottom: 0;                     /* Siempre abajo */
+    left: 0;
+    width: 100%;  
+    }
+
+    /* Modal: Ajuste de padding para tablet */
+    .modal-content {
+      padding: 40px 30px; 
+      max-width: 90%;
+      margin: 20px auto;
+    }
+    
+    /* Social Icons: Posición y tamaño ajustados */
+.social-icons {
+        bottom: 30px; /* Posición vertical: 50px desde abajo */
+        right: auto; /* Anular la posición fija a la derecha */
+        left: 50%; /* Colocar el punto de anclaje al 50% del ancho */
+        transform: translateX(-50%); /* Mover hacia atrás el 50% de su propio ancho para centrar */
+        justify-content: center; /* Asegura que los iconos se centren internamente */
+        width: auto; /* Permite que el contenedor solo mida el ancho de los iconos */
+    }
+
+    .social-icons img {
+        width: 20px;
+        height: 20px;
+    }
+
+    
+}
+
+/* ------------------------------
+   C) TABLETS (>=481 && <=768)
+   ------------------------------ */
+@media (min-width: 481px) and (max-width: 768px) {
+  /* Página Principal: Flujo vertical */
+    /* MODIFICACIÓN: Aumentar Padding en Tablets */
+  .html {
+    overflow-x: hidden;
+  }  
+  .body{
+    min-width: 100%;
+  }
+  .content-body { padding: 60px 40px; flex-direction: column; }
+     /* Imagen de la tarta relativa y más grande que en móvil */
+
+
+.scrolling-text-container {
+    width: clamp(80%, 95%, 100%); /* Se expande más en móviles */
+    margin: 0 auto;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Ajusta la distancia vertical de forma fluida */
+    margin-top: clamp(300px, 50vh, 550px); 
+    text-align: center;
+
+    mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+}
+}
+
+
+/* ------------------------------
+   B) MÓVILES PEQUEÑOS (<=480)
+   ------------------------------ */
+@media (max-width: 480px) {
+
+ 
+  /* Modal Ajuste Extremo */
+  .modal-content {
+max-width: 100%;
+
+  }
+.overlay{
+overflow: hidden;
+
+}
+.overlay-open{
+ overflow: hidden;
+}
+
+
+/* Menú más pequeño SIN alterar la posición */
+.menu a {
+    font-size: 0.875rem;   /* 14px como mínimo (antes 0.65em) */
+    padding: 4px 6px;    /* más chico */
+    /* NO toco margin-top NI nada de posición */
+    margin-top: -40px;
+}
+
+/* Botón reservas más pequeño SIN moverlo */
+.reservas-btn {
+    font-size: 0.875rem;   /* 14px como mínimo (antes 0.65em) */
+    padding: 4px 8px;
+}
+
+
+.menu {
+    position: absolute;      /* para sacarlo del flujo y poder centrarlo */
+    left: 50%;               /* centro horizontal */
+    transform: translateX(-50%);  /* ajuste exacto */
+    text-align: center;
+}
+
+
+
+  /* Overlay Menu: Usar un valor un poco más grande en móviles muy pequeños para impacto */
+  .overlay-content a {
+      font-size: 8vw; /* Ajustado a 8vw */
+  }
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: -10px; /* separa del footer */
+}
+.social-icons img {
+    width: 20px;
+    height: 20px;
+}
+
+
+.modal {
+    display: none; /* inicia oculto */
+    position: fixed;
+    z-index: 999999 !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #5b6c8fc0;
+    display: flex;
+    justify-content: center; /* centra horizontal */
+    align-items: center;     /* centra vertical */
+    padding: 10px;           /* espacio entre los bordes de la pantalla y el contenido */
+    box-sizing: border-box;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background-color: #fff;   /* tu contenido interno */
+    max-width: 300px;         /* ancho máximo */
+    width: 100%;              /* ocupa todo el ancho disponible dentro del padding */
+    max-height: 90%;          /* altura máxima para que no desborde la pantalla */
+    overflow-y: auto;         /* scroll si el contenido es demasiado grande */
+    border-radius: 2px;       /* opcional, bordes redondeados */
+    padding: 30px;            /* padding interno */
+    box-sizing: border-box;
+}
+
+/* Botón cerrar */
+.close-btn {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+
+
+    .overlay-footer-right a {
+        font-size: 10px;
+    }
+
+
+     
+    /* Overlay Menu: Tamaño de fuente fluido reducido */
+    .overlay-content {
+        gap: 15px;
+    }
+    .overlay-content a {
+        font-size: 12vw; /* Se ajusta el tamaño de fuente usando Viewport Width (7vw) */
+        line-height: 1.0; 
+    }
+    
+
+
+.scrolling-text-container {
+        /* En móviles muy pequeños, mejor usar un margen superior menor */
+        margin-top: clamp(480px, 60vh, 450px);
+        width: 100%;
+    }
+    
+    .scrolling-track span {
+        /* Texto un poco más grande para legibilidad en móvil */
+        font-size: clamp(0.9rem, 4vw, 1.2rem);
+    }
+
+.social-links {
+    margin-top: 30px;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    /* 💥 CAMBIO CLAVE: Usamos 'gap' para la separación horizontal sin divisores */
+    gap: 25px; 
+    
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    /* Color inicial BLANCO */
+    color: white; 
+    text-decoration: none;
+    transition: color 0.3s;
+    /* 💥 CAMBIO CLAVE: Aumentamos el tamaño (de 1.5em a 2em) */
+    font-size: 2em; 
+    line-height: 1; 
+}
+
+.social-links a:hover {
+    /* Color rosa en hover */
+    color: #E91E63;
+}
+
+.right-section {
+    /* 🚨 CAMBIO DE DISTRIBUCIÓN: Le damos menos espacio al contenedor del GIF (25% del ancho disponible) */
+    flex: 0.5; 
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end; /* Alinear el GIF a la parte inferior */
+    position: relative; /* Contexto de posicionamiento */
+    /* 🚨 CAMBIO: Permite que el GIF se desborde fuera del contenedor para moverlo a la derecha */
+    overflow: visible; 
+}
+
+}
+
+
+/* --- RESPONSIVE ESPECÍFICO EQUIPO (Móvil/Tablet) --- */
+@media (max-width: 900px) {
+    
+
+/* Menú más pequeño SIN alterar la posición */
+.menu a {
+    font-size: 0.875rem;   /* 14px como mínimo (antes 0.85em = 13,6px) */
+    padding: 4px 6px;    /* más chico */
+    /* NO toco margin-top NI nada de posición */
+    margin-top: -40px;
+}
+
+/* Botón reservas más pequeño SIN moverlo */
+.reservas-btn {
+    font-size: 0.875rem;   /* 14px como mínimo (antes 0.85em = 13,6px) */
+    padding: 4px 8px;
+}
+
+
+.menu {
+    position: absolute;      /* para sacarlo del flujo y poder centrarlo */
+    left: 50%;               /* centro horizontal */
+    transform: translateX(-50%);  /* ajuste exacto */
+    text-align: center;
+}
+    
+
+
+}
+
+
+/*RECETA*/
+/* ─────────────────────────────
+       HERO TITLE
+    ───────────────────────────── */
+    .receta {
+      padding: 30px 20px 100px;
+    }
+ 
+    .receta__eyebrow {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: 0.12em;
+      line-height: 0.3;
+      font-weight: 400;
+      text-align: center;
+    }
+ 
+    .receta__title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(3rem, 10vw, 6rem);
+      letter-spacing: 0.04em;
+      line-height: 0.2;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+ 
+    .receta__sub {
+      font-size: clamp(0.9rem, 2vw, 0.9rem);
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--text-light);
+      text-align: center;
+      margin-bottom: 5%;
+      
+    }
+ 
+    /* ─────────────────────────────
+       SECTION LABEL PILL
+    ───────────────────────────── */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1.5px solid #f9f9f9;
+      border-radius: var(--radio-boton, 6px);
+      padding: 6px 18px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      margin-bottom: 32px;
+    }
+ 
+ 
+ 
+    /* ─────────────────────────────
+       SHARED BLOCK WRAPPER
+    ───────────────────────────── */
+    .block {
+      max-width: 1200px;
+      margin: 0 auto;
+      margin-bottom: 5%;
+    }
+ 
+ 
+    /* ─────────────────────────────
+       NECESITARÁS BOX
+    ───────────────────────────── */
+    .necesitas {
+      border: 1.5px solid #f9f9f9;
+      border-radius: 4px;
+      padding: 20px 20px 40px;
+      margin: 0 auto 48px;
+      max-width: 560px;
+    }
+ 
+    .necesitas__title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+      text-align: center;
+    }
+ 
+    .necesitas__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+ 
+    .necesitas__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+ 
+    .necesitas__item img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+    }
+ 
+    .necesitas__btn {
+      background:#E91E63 ;
+      color: #f9f9f9;
+      border: none;
+      padding: 5px 5px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      
+      margin-top: 4px;
+      transition: opacity 0.2s;
+    }
+    .necesitas__btn:hover { opacity: 0.85; }
+ 
+    /* ─────────────────────────────
+       ILLUSTRATION GRID (sofrito)
+    ───────────────────────────── */
+    .illus-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 50px;
+    }
+ 
+    /* 1.3 ocupa ancho completo y se centra */
+    .illus-item:nth-child(3) {
+      grid-column: 1 / -1;
+      max-width: 240px;
+      margin: 0 auto;
+    }
+ 
+    .illus-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      animation: fadeUp 0.5s ease both;
+    }
+ 
+    .illus-item img {
+      width: 100%;
+      max-width: 160px;
+      height: 140px;
+      object-fit: contain;
+    }
+ 
+    .illus-caption {
+      font-size: 0.9rem;
+      font-weight: 400;
+      line-height: 1.55;
+      text-align: center;
+      color: var(--text-light);
+    }
+ 
+    /* ─────────────────────────────
+       REDUCCION SECTION
+    ───────────────────────────── */
+ 
+    /* MÓVIL: grid de 2 cols × 3 filas
+       Fila 1: [fantasma img] [quote]
+       Fila 2: [—]           [caption 2.1]
+       Fila 3: [fuego + texto 2.2 — ancho completo]
+    */
+  .reduccion__layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px 16px;
+    align-items: start;
+    margin-right: 0;
+  }
+ 
+    /* Abrimos reduccion__left como display:contents para colocar sus hijos en el grid */
+    .reduccion__left {
+      display: contents;
+    }
+ 
+    /* Imagen del fantasma: col 1, fila 1 */
+  .reduccion__left img {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100px;
+    justify-self: center;
+    align-self: start;
+    margin-top: 0;
+  }
+  .reduccion__layout > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+  }
+    /* Caption 2.1 (hijo de reduccion__left): col 2, fila 2 — debajo del quote */
+    .reduccion__left .reduccion__caption {
+      grid-column: 2;
+      grid-row: 1;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.5;
+      text-align: left;
+      align-self: end;
+     padding-top: 45%;
+    }
+ 
+    .reduccion__caption {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.5;
+      text-align: center;
+    }
+ 
+
+    /* Quote: col 2, fila 1 */
+.reduccion__quote {
+  border: 1.5px dashed rgba(255,255,255,0.5);
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-style: italic;
+  color: #f9f9f9;
+}
+ 
+    /* Llama: fila 3, imagen a la derecha, texto a la izquierda */
+    .reduccion__center {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      display: contents;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+    }
+ 
+ .reduccion__center img {
+  grid-column: 2;
+  grid-row: 2;
+  width: 150px;
+  justify-self: center;
+  align-self: center;
+  margin-bottom: 0;
+}
+
+ 
+.reduccion__center .reduccion__caption {
+  grid-column: 1;
+  grid-row: 2;
+  text-align: left;
+  align-self: center;
+}
+ 
+    /* ─────────────────────────────
+       EMPLATADO SECTION
+    ───────────────────────────── */
+    .emplatado__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+ 
+    .emplatado__item {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+ 
+    .emplatado__item img {
+      width: 100%;
+      max-width: 160px;
+      height: 120px;
+      object-fit: contain;
+      
+    }
+ 
+    .emplatado__caption {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.55;
+    }
+ 
+    .row-2cols{
+    max-width: 1200px;
+    margin: 0 auto;
+    }
+ 
+ 
+    /* ─────────────────────────────
+       ANIMATIONS
+    ───────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+ 
+    .illus-item:nth-child(1) { animation-delay: 0.05s; }
+    .illus-item:nth-child(2) { animation-delay: 0.15s; }
+    .illus-item:nth-child(3) { animation-delay: 0.25s; }
+ 
+    /* ─────────────────────────────
+       DESKTOP (≥ 768px)
+    ───────────────────────────── */
+    @media (min-width: 768px) {
+ 
+      /* Sofrito: ilustraciones + necesitas lado a lado */
+      .sofrito__desktop {
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        gap: 30px;
+        align-items: start;
+      }
+ 
+      /* Volvemos a 3 cols en desktop */
+      .illus-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+ 
+      /* Anulamos el override móvil del 3er item */
+      .illus-item:nth-child(3) {
+        grid-column: auto;
+        max-width: none;
+        margin: 0;
+      }
+ 
+      /* Necesitas va a la derecha en desktop, pero en HTML está abajo para mobile */
+      .necesitas {
+        margin: 0;
+        max-width: 400px;
+        order: 2;
+      }
+ 
+      .sofrito__illus { order: 1; }
+ 
+      /* Reduccion: 3 columnas */
+      .reduccion__layout {
+        grid-template-columns: 175px 1fr 180px;
+        gap: 24px;
+        align-items: start;
+        margin-right: 40px;
+        margin-top: 15px;
+      }
+ 
+      /* Reset mobile display:contents — volvemos a cajas normales en desktop */
+      .reduccion__left {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        grid-column: auto;
+        grid-row: auto;
+      }
+ 
+      .reduccion__left img {
+        grid-column: auto;
+        grid-row: auto;
+        justify-self: auto;
+        align-self: auto;
+      }
+ 
+      .reduccion__left .reduccion__caption {
+        grid-column: auto;
+        grid-row: auto;
+        font-size: 0.9rem;
+        text-align: left;
+        align-self: auto;
+        padding-top: 0;
+      }
+ 
+      .reduccion__layout > div:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        grid-column: auto;
+        grid-row: auto;
+      }
+ 
+      .reduccion__quote {
+        grid-column: auto;
+        grid-row: auto;
+        align-self: auto;
+      }
+ 
+      /* Reset mobile grid overrides for reduccion__center in desktop */
+      .reduccion__center {
+        display: flex;          /* ← sobreescribe el display:contents del móvil */
+        grid-column: auto;
+        grid-row: auto;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 8px;
+      }
+ 
+    .reduccion__center .reduccion__caption {
+      grid-column: auto;
+      grid-row: auto;
+      text-align: left;
+      max-width: none;
+      flex: none;
+    }
+ 
+      .reduccion__caption {
+        text-align: left;
+      }
+      
+      .columnaemplatado{
+        padding: 56px 48px;
+      }
+     
+ 
+ 
+      .reduccion__center img {
+        grid-column: auto;
+        grid-row: auto;
+        width: 200px;
+        margin-bottom: 0;
+      }
+ 
+      /* Emplatado: 4 columnas */
+      .emplatado__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+ 
+      .illus-grid { gap: 24px; }
+      .illus-item img { height: 160px; }
+    }
+ 
+    /* ─────────────────────────────
+       ROW 2 COLS (reduccion + emplatado en desktop)
+    ───────────────────────────── */
+    .row-2cols { display: contents; }
+ 
+    @media (min-width: 768px) {
+      .row-2cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+      /* quitamos el border-top individual cuando están en la fila */
+      .row-2cols .block {
+        border-top: none;
+      }
+      /* línea vertical separadora entre los dos */
+    }
+ 
+      /* ── SECTION ── */
+    .horno {
+      background: #E91E63;
+      padding: 80px 20px 100px;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .horno {
+        padding-top: 24px;
+      }
+    }
+
+    /* subtle radial glow */
+    .horno::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+  
+      pointer-events: none;
+    }
+ 
+    /* ── SEARCH ── */
+    .horno__search-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      margin-top: 60px;
+    }
+ 
+    .horno__search-wrap {
+      display: flex;
+      align-items: center;
+      max-width: 420px;
+      margin: 0 auto 60px;
+      border-radius: var(--radio-bloque, 12px);
+      overflow: hidden;
+      background: #f9f9f9;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+    }
+ 
+    .horno__search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 16px 22px;
+      font-family: 'Urbanist', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      background: #f9f9f9;
+      text-transform: uppercase;
+    }
+ 
+    .horno__search-input::placeholder { color: #E91E63; font-weight: 800; text-transform: uppercase; }
+ 
+    .horno__search-btn {
+      background:#F8A07B;
+      border: none;
+      width: 58px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .horno__search-btn:hover { background: #e07a00; }
+    .horno__search-btn svg { width: 22px; height: 22px; fill: var(--white); }
+ 
+    /* ── TAGLINE ── */
+    .horno__tagline {
+      font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      line-height: 1.6;
+      text-transform: uppercase;
+      max-width: 520px;
+      margin: 0 auto 70px;
+      opacity: 0.95;
+    }
+ 
+    /* ── TIMELINE ── */
+    .timeline {
+      position: relative;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+ 
+    /* horizontal line */
+    .timeline__track {
+      position: absolute;
+      top: 50%;
+      left: 5%;
+      right: 5%;
+      height: 4px;
+      background: #f9f9f9;
+      border-radius: 2px;
+      transform: translateY(-50%);
+    }
+ 
+    /* top row: steps 2 & 4 */
+    .timeline__row {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 0;
+    }
+ 
+    /* each step */
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 155px;
+      gap: 6px;
+      animation: fadeUp 0.6s ease both;
+    }
+ 
+    .step--top { flex-direction: column-reverse; }
+ 
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .step:nth-child(1) { animation-delay: 0.1s; }
+    .step:nth-child(2) { animation-delay: 0.25s; }
+    .step:nth-child(3) { animation-delay: 0.4s; }
+    .step:nth-child(4) { animation-delay: 0.55s; }
+    .step:nth-child(5) { animation-delay: 0.7s; }
+ 
+    .step__badge {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #F8A07B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem;
+      color: #f9f9f9;
+      flex-shrink: 0;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 2;
+      transition: transform 0.2s;
+    }
+    .step:hover .step__badge { transform: scale(1.12); }
+ 
+   
+ 
+    .step__card {
+      background: var(--card-bg);
+      border: 1.5px solid #F8A07B;
+      border-radius: 10px;
+      padding: 14px 12px;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      width: 200px;
+    }
+ 
+    .step__title {
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+ 
+    .step__desc {
+      font-size: 0.9rem;
+      font-weight: 400;
+      line-height: 1.55;
+      opacity: 0.88;
+    }
+ 
+    /* dot: pequeño círculo sobre la línea horizontal */
+    .step__dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #f9f9f9;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+    }
+ 
+    /* connector line between dot and badge */
+    .step__connector {
+      width: 2px;
+      height: 26px;
+      background: rgba(255,255,255,0.5);
+    }
+ 
+    /* ── ROW ALIGNMENT ── */
+    /* Espacio entre la línea horizontal y los badges */
+    .timeline__row--top {
+      align-items: flex-end;
+      padding-bottom: 4px;
+    }
+    .timeline__row--bottom {
+      align-items: flex-start;
+      padding-top: 4px;
+    }
+ 
+    /* step--top (pasos 2 y 4): orden visual de arriba a abajo:
+       card → connector → badge → dot
+       Usamos `order` porque column-reverse con elementos ocultos
+       (mobile cards) desordena el resultado */
+    .step--top {
+      flex-direction: column;
+      gap: 6px;
+    }
+ 
+    .step--top .step__card--desktop { order: 1; }
+    .step--top .step__connector     { order: 2; }
+    .step--top .step__badge         { order: 3; }
+    .step--top .step__dot           { order: 4; }
+    /* elementos móviles ocultos, pero con order alto por seguridad */
+    .step--top .step__vline,
+    .step--top .step__card--mobile,
+    .step--top .step__spacer        { order: 99; }
+ 
+ 
+    /* ── TIMELINE HOVER / FOCUS ── */
+    /* Badge: escala ya definida arriba, añadimos glow */
+    .step:hover .step__badge,
+    .step:focus-within .step__badge {
+      background: rgb(233, 30, 99);
+      box-shadow: 0 0 0 4px #f9f9f9, 0 6px 24px rgba(0,0,0,0.25);
+    }
+ 
+    /* Card: borde y sombra más brillantes al hover */
+    .step:hover .step__card,
+    .step:focus-within .step__card {
+      border-color: lch(100% 0.01 296.81 / 0.85);
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.25), 0 8px 28px rgba(0,0,0,0.2);
+      background: rgba(249, 249, 249,0.05);
+      transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+    }
+ 
+    .step__card {
+      transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+    }
+ 
+    /* ── FOOTER LINK ── */
+    .horno__footer {
+      margin-top: 60px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      opacity: 0.85;
+      letter-spacing: 0.04em;
+    }
+ 
+    /* ── RESPONSIVE ── */
+ 
+    /* Desktop: ocultar cards móviles, vline y spacer */
+    .step__card--mobile,
+    .step__vline,
+    .step__spacer { display: none; }
+ 
+    /* page-sobreck usa el footer estándar azul fijo — sin override */
+    @media (max-width: 680px) {
+      .timeline__track { display: none; }
+ 
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 20px;
+      }
+ 
+      .timeline__row { display: contents; }
+ 
+      .step[data-order="1"] { order: 1; }
+      .step[data-order="2"] { order: 2; }
+      .step[data-order="3"] { order: 3; }
+      .step[data-order="4"] { order: 4; }
+      .step[data-order="5"] { order: 5; }
+ 
+      /* Grid de 2 columnas: [44px círculo] [1fr card] */
+      .step {
+        display: grid !important;
+        grid-template-columns: 44px 1fr;
+        column-gap: 14px;
+        width: 100%;
+        /* El grid tiene 2 filas: fila1=badge+card, fila2=vline+spacer */
+      }
+ 
+      /* Ocultar elementos exclusivos de desktop */
+      .step__dot,
+      .step__connector,
+      .step__card--desktop { display: none !important; }
+ 
+      /* Badge: col1, fila1 */
+      .step__badge {
+        grid-column: 1; grid-row: 1;
+        width: 44px; height: 44px; font-size: 1.4rem;
+        align-self: start; justify-self: center;
+        margin-top: 2px;
+      }
+ 
+      /* Card móvil: col2, fila1 */
+      .step__card--mobile {
+        display: block;
+        grid-column: 2; grid-row: 1;
+        text-align: left; align-self: start;
+        margin-bottom: 0;
+      }
+ 
+      /* Línea vertical: col1, fila2 */
+      .step__vline {
+        display: block;
+        grid-column: 1; grid-row: 2;
+        width: 2px;
+        height: 100%; min-height: 16px;
+        background: rgba(255,255,255,0.4);
+        justify-self: center;
+        margin: 4px 0;
+      }
+ 
+      /* Espaciador: col2, fila2 — da altura a la fila para que la línea se vea */
+      .step__spacer {
+        display: block;
+        grid-column: 2; grid-row: 2;
+        height: 16px;
+      }
+ 
+      /* Anular márgenes inline de los pasos 2 y 4 */
+      .step[data-order="2"],
+      .step[data-order="4"] {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      .step[data-order="5"] .step__vline,
+      .step[data-order="5"] .step__spacer { display: none !important; }
+ 
+      .step__title { font-size: 0.75rem; }
+      .step__desc  { font-size: 0.68rem; }
+    }
+    /* Igualar tamaño visual: imagen 1.1 (personas) respecto a 1.2 (corazones) */
+
+/* Móvil */
+.illus-item:nth-child(1),
+.illus-item:nth-child(2) {
+  height: 200px;          /* misma altura para ambos — ajusta si hace falta */
+  justify-content: flex-end;
+}
+
+.illus-item:nth-child(1) img {
+  width: 130px;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .illus-item:nth-child(1),
+  .illus-item:nth-child(2) {
+    height: 220px;
+    justify-content: flex-end;
+  }
+  .illus-item:nth-child(1) img {
+    width: 140px;
+  }
+}
+
+      /* ── RESULTADO DEL PEDIDO ── */
+      .horno__resultado {
+        max-width: 860px;
+        margin: 0 auto;
+        display: none;
+      }
+ 
+      .resultado__bienvenida {
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(1.1rem, 3vw, 1.5rem);
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+ 
+      .resultado__notas {
+        font-size: 0.9rem;
+        font-weight: 400;
+        opacity: 0.85;
+        line-height: 1.6;
+        margin-bottom: 50px;
+        font-style: italic;
+      }
+ 
+      /* Error */
+      .horno__error {
+        display: none;
+        background: rgba(255,255,255,0.12);
+        border: 1.5px dashed rgba(255,255,255,0.5);
+        border-radius: 12px;
+        padding: 28px 32px;
+        max-width: 460px;
+        margin: 0 auto 40px;
+        text-align: center;
+      }
+ 
+      .horno__error p {
+        font-size: 0.95rem;
+        font-weight: 600;
+        line-height: 1.6;
+        margin: 0 0 14px;
+      }
+ 
+      .horno__error a {
+        color: white;
+        font-weight: 800;
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+ 
+      /* Loading spinner */
+      .horno__loading {
+        display: none;
+        margin: 20px auto;
+        width: 36px;
+        height: 36px;
+        border: 3px solid rgba(255,255,255,0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+ 
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+ 
+      /* ── STEP COMPLETADO ── */
+      .step.completado .step__badge {
+        background: #ffffff;
+        color: #E91E63;
+        box-shadow: 0 0 0 4px rgba(255,255,255,0.4), 0 6px 20px rgba(0,0,0,0.2);
+      }
+ 
+      .step.completado .step__dot {
+        background: #ffffff;
+        box-shadow: 0 0 0 3px rgba(255,255,255,0.4);
+      }
+ 
+      .step.completado .step__card {
+        border-color: rgba(255,255,255,0.9);
+        background: rgba(255,255,255,0.18);
+        box-shadow: 0 0 0 2px rgba(255,255,255,0.2), 0 8px 28px rgba(0,0,0,0.15);
+      }
+ 
+      /* ── STEP ACTIVO ── */
+      .step.activo .step__badge {
+        background: #ffffff;
+        color: #E91E63;
+        box-shadow: 0 0 0 5px rgba(255,255,255,0.5), 0 0 24px rgba(255,255,255,0.4);
+        animation: pulso 1.8s ease-in-out infinite;
+      }
+ 
+      .step.activo .step__card {
+        border-color: rgba(255,255,255,0.9);
+        background: rgba(255,255,255,0.22);
+        box-shadow: 0 0 0 2px rgba(255,255,255,0.3), 0 10px 32px rgba(0,0,0,0.2);
+      }
+ 
+      @keyframes pulso {
+        0%, 100% { box-shadow: 0 0 0 5px rgba(255,255,255,0.5), 0 0 24px rgba(255,255,255,0.4); }
+        50%       { box-shadow: 0 0 0 8px rgba(255,255,255,0.25), 0 0 40px rgba(255,255,255,0.25); }
+      }
+ 
+      /* Etiqueta "← aquí" sobre el badge activo */
+      .step.activo .step__badge::after {
+        content: '← aquí';
+        position: absolute;
+        left: calc(100% + 10px);
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: 'Urbanist', sans-serif;
+        font-size: 0.65rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        white-space: nowrap;
+        color: white;
+        opacity: 0.85;
+      }
+ 
+      @media (max-width: 680px) {
+        .step.activo .step__badge::after {
+          left: 50%;
+          top: calc(100% + 6px);
+          transform: translateX(-50%);
+        }
+      }
+
+
+
+
+
+
+
+
+
+      /* ── COMANDA (ticket de cocina) ─────────────── */
+.comanda {
+    position: fixed;
+    top: 130px;
+    right: clamp(20px, 6vw, 100px);
+    z-index: 500;
+    text-decoration: none;
+    overflow: hidden;
+    padding-bottom: 8px;
+}
+
+.comanda__papel {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: #f9f9f9;
+    color: #5B6C8F;
+    font-family: 'Urbanist', sans-serif;
+    padding: 14px 18px 16px;
+    width: 150px;
+    transform: rotate(2deg);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    /* borde inferior dentado tipo ticket */
+    clip-path: polygon(
+        0 0, 100% 0, 100% calc(100% - 6px),
+        95% 100%, 90% calc(100% - 6px), 85% 100%,
+        80% calc(100% - 6px), 75% 100%, 70% calc(100% - 6px),
+        65% 100%, 60% calc(100% - 6px), 55% 100%,
+        50% calc(100% - 6px), 45% 100%, 40% calc(100% - 6px),
+        35% 100%, 30% calc(100% - 6px), 25% 100%,
+        20% calc(100% - 6px), 15% 100%, 10% calc(100% - 6px),
+        5% 100%, 0 calc(100% - 6px)
+    );
+    animation: imprimir 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: 1.8s;
+    transition: transform 0.3s ease;
+}
+
+.comanda:hover .comanda__papel {
+    transform: rotate(0deg) scale(1.04);
+}
+
+@keyframes imprimir {
+    0%   { transform: translateY(-110%) rotate(2deg); }
+    100% { transform: translateY(0) rotate(2deg); }
+}
+
+.comanda__label {
+    font-size: 0.55rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #E91E63;
+    border-bottom: 1.5px dashed #5B6C8F55;
+    padding-bottom: 5px;
+    margin-bottom: 3px;
+}
+
+.comanda__num {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    opacity: 0.7;
+}
+
+.comanda__plato {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.comanda__desc {
+    font-size: 0.68rem;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.comanda__estado {
+    font-size: 0.62rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #E91E63;
+    margin-top: 4px;
+}
+
+.comanda__cta {
+    font-size: 0.62rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 6px;
+    border-top: 1.5px dashed #5B6C8F55;
+    padding-top: 6px;
+}
+
+/* Móvil: más pequeña y sin tapar la tarta */
+@media (max-width: 768px) {
+    .comanda {
+        top: auto;
+        bottom: 110px;
+        right: 14px;
+    }
+    .comanda__papel {
+        width: 118px;
+        padding: 10px 12px 14px;
+    }
+    .comanda__plato { font-size: 0.85rem; }
+}
+
+
+
+
+
+
+
+
+
+
+/* ── CURSOR FUEGO ─────────────────────────── */
+.cursor-fuego {
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 999999;
+    transform: translate(-50%, -50%);
+}
+
+/* Rescoldo: el punto en reposo, late suave */
+.cursor-fuego .rescoldo {
+    width: 10px; height: 10px;
+    background: #E91E63;
+    border-radius: 50%;
+    animation: latir 2s ease-in-out infinite;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+@keyframes latir {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(233,30,99,0.5); }
+    50%      { box-shadow: 0 0 12px 3px rgba(248,160,123,0.55); }
+}
+
+/* Llama: oculta en reposo */
+.cursor-fuego .llama {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -55%) scale(0);
+    width: 26px; height: 34px;
+    opacity: 0;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s;
+}
+
+/* Estado encendido (hover sobre clicable) */
+.cursor-fuego.encendido .rescoldo {
+    transform: scale(0.4);
+    opacity: 0.5;
+}
+.cursor-fuego.encendido .llama {
+    opacity: 1;
+    transform: translate(-50%, -55%) scale(1);
+    animation: arder 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes arder {
+    from { transform: translate(-50%, -55%) scale(1) rotate(-2deg); }
+    to   { transform: translate(-50%, -57%) scale(1.08) rotate(2deg); }
+}
+
+@media (max-width: 768px), (pointer: coarse) {
+    .cursor-fuego { display: none; }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ── MODAL ESTILO COMANDA ─────────────────── */
+.comanda-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #5B6C8F;
+    padding-bottom: 12px;
+    margin-top: 15px;
+    margin-bottom: 4px;
+}
+
+.comanda-form-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #E91E63;
+    line-height: 1;
+    margin: 0;
+}
+
+.tiempo-respuesta {
+   font-size: 14px;
+   opacity: 0.75;
+   margin-top: 10px;
+   margin-bottom: 25px;
+}
+
+.comanda-form-folio {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #f9f9f9;
+    background: #5B6C8F;
+    padding: 3px 10px;
+    letter-spacing: 0.05em;
+}
+
+.comanda-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 10px;
+}
+
+.comanda-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    align-items: center;
+    border-bottom: 1px solid #5B6C8F;
+}
+
+.comanda-row label {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: #5B6C8F;
+    padding: 10px 8px;
+    border-right: 1px solid #5B6C8F;
+    text-transform: capitalize;
+}
+
+.comanda-row input,
+.comanda-row textarea {
+    border: none;
+    background: transparent;
+    padding: 10px 8px;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 0.85rem;
+    color: #5B6C8F;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    resize: none;
+}
+
+.comanda-row input::placeholder,
+.comanda-row textarea::placeholder {
+    color: #5B6C8F80;
+    font-style: italic;
+}
+
+.comanda-row--idea {
+    grid-template-columns: 90px 1fr;
+    align-items: start;
+    border-bottom: 2px solid #5B6C8F;
+}
+
+.comanda-row--idea label {
+    padding-top: 14px;
+    height: 100%;
+}
+
+.comanda-form button[type="submit"] {
+    margin-top: 66px;
+    background-color: #E91E63;
+    color: #f9f9f9;
+    border: none;
+    padding: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.comanda-form button[type="submit"]:hover {
+    background-color: #5B6C8F;
+}
+
+
+
+/* ── PASOS ANIMADOS DE LA COMANDA ─────────── */
+.comanda-pasos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0px 34px;
+    border-bottom: 1px dashed #5B6C8F80;
+    margin-bottom: 20px;
+}
+
+
+.comanda-pasos .paso {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: #5B6C8F;
+    transition: color 0.4s ease;
+    white-space: nowrap;
+    
+    
+    
+}
+
+.comanda-pasos .paso.activo {
+    color: #E91E63;
+}
+
+.comanda-pasos .sep {
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: #5B6C8F80;
+    
+}
+
+/* modal reservas compacto — global (todas las páginas) */
+.modal-content {
+    max-width: 320px;
+    padding: 38px 36px;
+}
+.comanda-form button[type="submit"] {
+    margin-top: 24px;
+}
+.comanda-pasos {
+    padding: 8px 0 20px;
+    margin-bottom: 14px;
+}
+.close-btn {
+    top: 10px;
+    right: 14px;
+}
+
+
+/* menú overlay: texto más grande solo en móvil */
+@media (max-width: 768px) {
+    body .overlay-content a {
+        font-size: clamp(2rem, 10vw, 3rem);
+    }
+}
+
+
+/* iconos de redes siempre opacos, en todas las páginas */
+.social-icons img {
+    opacity: 1 !important;
+}
+.social-icons img:hover {
+    opacity: 1 !important;
+}
+
+
+/* modal: ocultar la fila de pasos en móvil */
+@media (max-width: 768px) {
+    .comanda-pasos {
+        display: none;
+    }
+    /* quitar el flash azul al tocar en móvil */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+}
+
+/* overlay móvil: ©2025 arriba, privacidad/aviso abajo */
+@media (max-width: 768px) {
+    .overlay-footer {          /* ©2025 chiskey */
+        bottom: 46px;
+        top: auto;
+        padding: 0;
+    }
+    .overlay-footer-right {    /* política de privacidad / aviso legal */
+        bottom: 26px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+
+/* ==========================================================================
+   OVERLAY DEL MENÚ (Índice) · fuente única de su aspecto, en todas las páginas.
+   Va al final y con "html body" para mandar sobre las reglas sueltas de arriba.
+   ========================================================================== */
+html body .overlay {
+    /* el tono del pie de página: el crema con un 5% más de oscuro */
+    background-color: #EBE7DE;
+}
+/* enlaces: el mismo tamaño que la cinta "chiskey" de la home (en móvil, 17.3vw).
+   En ventanas bajas los cuatro no caben a ese tamaño entre la cabecera y el pie:
+   ahí baja lo justo (4,2 líneas en el alto libre, dejando 124px arriba y abajo) */
+html body .overlay-content a {
+    font-size: min(clamp(3rem, 9.6vw, 16rem), calc((100vh - 248px) / 4.2));
+    line-height: 0.9;
+    padding: 0 10px 0.14em;      /* abajo: lo justo para las colas (p, y) dentro del recorte del efecto */
+}
+/* sin hueco extra entre enlaces: el interlineado ya los separa (4 enlaces = 4,16 veces la letra) */
+html body .overlay-content { gap: 0; }
+/* pie del overlay: el estilo de "Packs" de servicios (Outfit 800, 0.8rem, azul).
+   Arriba "Base en Valencia esp", una línea cortada y debajo privacidad / aviso legal */
+html body .overlay-footer,
+html body .overlay-footer-right {
+    --of-base: clamp(16px, 4vh, 40px);
+    top: auto;
+    left: clamp(20px, 8vw, 140px);
+    padding: 0;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 0.8rem;
+    line-height: 1.3;
+    color: #5B6C8F;
+    text-align: left;
+}
+html body .overlay-footer {
+    right: clamp(20px, 8vw, 140px);
+    width: auto;                 /* entre los dos márgenes (una regla vieja de móvil le daba 100%) */
+    bottom: calc(var(--of-base) + 1.3em + 12px);
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid #5B6C8F;
+    /* línea cortada, como los separadores de las páginas: trazos de 6px con 4px de aire */
+    border-image: repeating-linear-gradient(90deg, #5B6C8F 0 6px, transparent 6px 10px) 0 0 1 0 / 0 0 1.5px 0;
+}
+html body .overlay-footer-right {
+    right: auto;
+    width: auto;
+    bottom: var(--of-base);
+}
+html body .overlay-footer-right a {
+    font: inherit;
+    color: inherit;
+}
+@media (max-width: 768px) {
+    html body .overlay-content a { font-size: min(17.3vw, calc((100vh - 248px) / 4.2)); }
+    /* en móvil, un poco más de aire entre las opciones */
+    html body .overlay-content { gap: clamp(10px, 4vw, 26px); }
+}
